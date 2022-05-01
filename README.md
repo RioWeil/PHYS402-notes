@@ -1,10 +1,10 @@
 # PHYS402-notes
-Typeset notes for UBC's PHYS 402 "Application of quantum mechanics" course. The course covers the following topics:
+Typeset notes for UBC's PHYS 402 "Application of quantum mechanics" course. The notes cover the following topics:
 
 1. Fundamental Concepts
-* Historical motivation
+* The beginnings of quantum mechanics
 * The Stern-Gerlach experiment
-* Basic formalism of QM
+* Basic formalism
 * Quantum measurement
 * Position and momentum
 2. Quantum Dynamics

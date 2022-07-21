@@ -17,9 +17,9 @@
 \usepackage{enumerate}
 \usepackage[breakable]{tcolorbox}
 \tcbuselibrary{theorems}
-\usepackage[sc]{mathpazo}
 \usepackage{siunitx}
 \numberwithin{equation}{section}
+\numberwithin{figure}{section}
 
 \let\vaccent=\v % rename builtin command \v{} to \vaccent{}
 \renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
@@ -134,3 +134,9 @@
 \newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
 \renewcommand{\abs}[1]{\lvert #1 \rvert}
 \newcommand{\dc}{\substack{DC \\ \longleftrightarrow \\ \phantom{o}}}
+
+\newtcolorbox{defbox}[1]{colback=red!5!, colframe=red!75!black,fonttitle=\bfseries, title=Definition#1}
+\newtcolorbox{thmbox}[1]{colback=blue!5, colframe=blue!55!black, fonttitle=\bfseries, title=Theorem#1}
+\newtcolorbox{axiombox}[1]{colback=green!5, colframe=green!35!black, fonttitle=\bfseries, title=Axiom#1}
+
+\newcommand{\DC}{\substack{DC \\ \longleftrightarrow \\ \phantom{o}}}

@@ -5,6 +5,7 @@ Typeset notes for UBC's PHYS 402 "Application of quantum mechanics" course. The 
 * The beginnings of quantum mechanics
 * The Stern-Gerlach experiment
 * Basic formalism
+* Observables
 * Quantum measurement
 * Position and momentum
 2. Quantum Dynamics

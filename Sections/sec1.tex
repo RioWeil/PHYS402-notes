@@ -262,7 +262,9 @@ With the necessary mathematical formalism under our belt, we can now state a fir
     \end{equation}
 \end{axiombox}
 
-There are now two questions that may arise. The first is that the statement of the Dirac projection postulate and the Born rule do not match that found in Table \ref{table-QMaxioms}. The above statement requires some refinement to deal with cases of degeneracy, which we will soon address. The second question concerns the post-measurement states $\set{\ket{m_j}}_j$; namely, how are they are determined? We will address the latter question first, and build up the formalism to state the measurement axioms in full generality. To this end, we define linear operators, which describe quantum mechanical observables and evolution. 
+There are now two questions that may arise. The first is that the statement of the Dirac projection postulate and the Born rule do not match that found in Table \ref{table-QMaxioms}. The second question concerns the post-measurement states $\set{\ket{m_j}}_j$; namely, how are they are determined? We will address the latter question first, and build up the formalism to state the measurement axioms in full generality. To this end, we move to a discussion of linear operators, which describe quantum mechanical observables and evolution. 
+
+\subsection{Operators and Observables}
 
 \begin{defbox}{: Linear Operators}\label{def-linops}
     $A$ is an \emph{operator} that acts on a Hilbert space $\H$ if $\forall \ket{\psi} \in \H$, $A\ket{\psi} \in \H$. $A$ is $\emph{linear}$ if:
@@ -287,3 +289,105 @@ However, note that in general operators are \emph{not} commutative, that is:
     AB \neq BA.
 \end{equation}
 
+Quantum mechanical observables are a specific type of linear operators; namely, they are Hermitian. In order to make sense of this, we introduce two more definitions.
+
+\begin{defbox}{: Hermitian adjoint}\label{def-adjoint}
+    The \emph{Hermitian adjoint} $A^\dagger$ of a linear operator $A$ is defined via the dual correspondence:
+    \begin{equation}
+        A\ket{\psi} \DC \bra{\psi}A^\dagger.
+    \end{equation}
+\end{defbox}
+
+\begin{defbox}{: Hermitian operators and observables}\label{def-observables}
+    An operator $A$ is \emph{Hermitian} if:
+    \begin{equation}
+        A^\dagger = A.
+    \end{equation}
+    Quantum mechanical \emph{observables} (such as position, momentum, spin, and energy) are Hermitian operators.
+\end{defbox}
+
+In general, acting on a state with an operator changes the state, and the new state is not necessarily proportional to the original state, i.e:
+\begin{equation}
+    A\ket{\psi} \not\propto \ket{\psi}.
+\end{equation}
+However, for special states known as eigenstates of an operator, this is indeed the case.
+
+\begin{defbox}{: Eigenstates and eigenvalues}\label{def-eigstates}
+    An \emph{eigenstate} $\ket{a}$ of a linear operator $A$ is a state that satisfies:
+    \begin{equation}
+        A\ket{a} = a\ket{a}.
+    \end{equation}
+    Therein, $a \in \CC$ is the \emph{eigenvalue} corresponding to that eigenstate. The null vector $\v{0}$ is excluded from being an eigenvector.
+\end{defbox}
+
+With some more machinery developed, we can more carefully state the Dirac postulate and the Born rule.
+
+\begin{axiombox}{: Quantum Measurement (Version 2)}
+    \textbf{Dirac postulate:}
+    \begin{enumerate}
+        \item Each possible outcome of the measurement of an observable $A$ is an eigenvalue of $A$.
+        \item If the eigenvalue $a$ is found in the measurement, then the post measurement state is an eigenvector $\ket{a}$ of $A$,
+        \begin{equation}
+            \ket{\psi} \mapsto \ket{a}
+        \end{equation}
+        satisfying
+        \begin{equation}
+            A\ket{a} = a\ket{a}.
+        \end{equation}
+    \end{enumerate}
+
+    \textbf{Born rule:} Given an initial state of $\ket{\psi}$, the possibility for the measurement outcome $a_i$ occuring in a measurement of an observable $A$ (where $a_i$ is an eigenvalue of $A$) is:
+    \begin{equation}
+        p_i = \abs{\braket{a_i}{\psi}}^2.
+    \end{equation}
+\end{axiombox}
+
+We reiterate that the eigenstate $\ket{a}$ is the possible post-measurement state, and the eigenvalue $a$ is the corresponding measurement outcome. As a concrete example, the spin-$z$ operator $S_z$ (for spin-1/2) systems has eigenstates $\ket{\uparrow}$ and $\ket{\downarrow}$, with corresponding eigenvalues of $+\hbar/2$ and $-\hbar/2$ (i.e. $S_z\ket{\uparrow} = +\hbar/2\ket{\uparrow}$, and likewise for $\ket{\downarrow}$). We may write $S_z$ as:
+\begin{equation}
+    S_z = \frac{\hbar}{2}(\dyad{\uparrow}{\uparrow} - \dyad{\downarrow}{\downarrow}).
+\end{equation}
+A measurement of the $z$ component of spin has two possible outcomes $\pm \hbar/2$, corresponding to post measurement states $\ket{\uparrow}/\ket{\downarrow}$. $\set{\ket{\uparrow}, \ket{\downarrow}}$ is an ONB, and we can expand a general state $\ket{\psi}$ in this basis as $\ket{\psi} = \alpha\ket{\uparrow} + \beta\ket{\downarrow}$. The Born rule then tells us that $p(\uparrow) = \abs{\braket{\uparrow}{\psi}}^2 = \abs{\alpha}^2$ and similarly that $p(\downarrow) = \abs{\beta}^2$. 
+
+There are two points of consistency that the restatement of the Dirac postulate invites. First, an experiment should only have real-valued outcomes; an measurement shouldn't return a complex number. Second, it is not a priori immediate that the eigenstates/post-measurement states are mutually orthogonal, as the first statement of the postulate requires. Fortunately, there is a theorem that covers both.
+
+\begin{thmbox}{}
+    The eigenvalues of a Hermitian operator $A$ are real, and the eigenvectors of $A$ corresponding to distinct eigenvalues are orthogonal.
+\end{thmbox}
+
+\begin{proof}
+    Consider two eigenstates $\ket{a}, \ket{a'}$ of $A$ (with corresponding eigenvalues $a, a'$). First, we make the observation that $\bra{a}A = \bra{a}a^*$. This follows as:
+    \begin{equation}
+        \bra{a}a^* \DC a\ket{a} = A\ket{a} = A^\dagger\ket{a} \DC \bra{a}A 
+    \end{equation}
+    where the first equality invokes that $\ket{a}$ is an eigenvector of $A$, and the second equality invokes the Hermicity of $A$. Since the dual correspondence is unique, we can compare the first and the last expressions to conclude that $\bra{a}A = \bra{a}a^*$. Next, we consider the number $\bra{a}A\ket{a'}$. We may write this as:
+    \begin{equation}
+        \bra{a}A\ket{a'} = \bra{a}(A\ket{a'}) = \bra{a}a'\ket{a} = a'\braket{a}{a'}
+    \end{equation} 
+    but by associativity, we can just as well write this as:
+    \begin{equation}
+        \bra{a}A\ket{a'} = (\bra{a}A)\ket{a'} = \bra{a}a^*\ket{a'} = a^*\bra{a}{a'}.
+    \end{equation}
+    Therefore we find that $a^*\bra{a}{a'} = a'\braket{a}{a'}$. From this we obtain that:
+    \begin{equation}\label{eq-eigveccondition}
+        (a^* - a')\braket{a}{a'} = 0.
+    \end{equation}
+    There are now two cases to consider.
+    \begin{enumerate}[(I)]
+        \item If $\ket{a} = \ket{a'}$, then $\braket{a}{a'} = \braket{a}{a} > 0$ (as $\ket{a}$ is an eigenvector, it cannot be a null vector). Therefore for Eq. \eqref{eq-eigveccondition} to be satisfied it must follow that $a^* = a$, i.e. $a$ is real.
+        \item If instead $a \neq a'$, then $a^* \neq a'$ (as $a = a^*$), so for Eq. \eqref{eq-eigveccondition} to be satisfied it must follow that $\braket{a}{a'} = 0$. 
+    \end{enumerate}
+\end{proof}
+
+We end off this section by discussing the difference between a quantum state and a wavefunction. Consider expanding $\ket{\psi}$ in a ONB $\set{\ket{b_j}}_j$. We then have:
+\begin{equation}
+    \ket{\psi} = \sum_j \ket{b_j}\braket{b_j}{\psi}.
+\end{equation}
+Therein, $\psi_j = \psi(j) = \braket{b_j}{\psi}$ is the wavefunction; a quantum wavefunction is just a quantum state expanded in a given ONB. A particularly important (and familiar) example is using the position basis. Consider the resolution of the identity involving position:
+\begin{equation}
+    \int \mathrm d x \dyad{x}{x} = \II.
+\end{equation}
+For any $\ket{\psi}$, we then have:
+\begin{equation}
+    \ket{\psi} = \int \mathrm d x \ket{x}\braket{x}{\psi}.
+\end{equation}
+Where $\braket{x}{\psi} = \psi(x)$ is the position wavefunction, which played a central role in your first course in quantum mechanics.

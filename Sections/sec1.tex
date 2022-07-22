@@ -2,15 +2,15 @@
 \subsection{The beginnings of quantum mechanics}
 Before we dive headfirst into the formalism of quantum mechanics, let us first review the first steps of the field as taken in the early 1900s. 
 
-Our first founder is Max Planck; the problem at hand was the problem of the blackbody radiation spectrum. The two pre-existing laws (derived from thermodynamics arguments alone) predicting the BBR intensity as a function of frequency were flawed. The first was Wien's law (1896):
+Our first founder is Max Planck; the problem at hand was the problem of the blackbody radiation spectrum. The two pre-existing laws (derived from thermodynamics arguments alone) predicting the BBR intensity as a function of wavelength/frequency were flawed. The first was Wien's law (1896):
 \begin{equation}
-    I_{\text{Wien}}(f, T) \sim f^3\exp(-\frac{f}{T})
+    I_{\text{Wien}}(\lambda, T) \sim \frac{1}{\lambda^5}\exp(-\frac{1}{\lambda T}) % I(\lambda, T) = \frac{2hc^2}{\lambda^5}e^{-\frac{hc}{\lambda k_B T}}
 \end{equation}
-which agreed with high frequency data well but failed to accurately describe low frequency emission. The second was Rayleigh-Jeans' law (1900):
+which agreed with low wavelength/high frequency data well but failed to accurately describe high wavelength/low frequency emission. The second was Rayleigh-Jeans' law (1900):
 \begin{equation}
-    I_{\text{RJ}}(f, T) \sim f^4 T
+    I_{\text{RJ}}(\lambda, T) \sim \frac{T}{\lambda^4} % I(\lambda, T) = \frac{2ck_B T}{\lambda^4}
 \end{equation}
-which agreed with low frequency data well but failed to accurately describe high frequency emission\footnote{It should be noted however that a full-derivation of the Rayleigh-Jeans law did not occur until 1905, at which point Planck had already established the more correct explanation.}. In fact, the intensity as predicted by Rayleigh-Jeans' diverges at high $\nu$, leading to the (obviously) erroneous conclusion that the total energy emitted by a black body is infinite; the so-called ``ultraviolet catastrophe''.
+which agreed with high wavelength/low frequency data well but failed to accurately describe low wavelength/high frequency emission\footnote{It should be noted however that a full-derivation of the Rayleigh-Jeans law did not occur until 1905, at which point Planck had already established the more correct explanation.}. In fact, the intensity as predicted by Rayleigh-Jeans' diverges at low $\lambda$, leading to the (obviously) erroneous conclusion that the total energy emitted by a black body is infinite; the so-called ``ultraviolet catastrophe''.
 
 In order to solve this problem, in 1900 Planck proposed a quantum hypothesis; that light carries energy in individual packets, or quanta. In particular, for light of frequency $f$, each quanta carries energy:
 \begin{equation}
@@ -18,14 +18,14 @@ In order to solve this problem, in 1900 Planck proposed a quantum hypothesis; th
 \end{equation}
 Combining this quantum hypothesis with the Boltzmann supression of high-energy states (from thermodynamics), Planck's law was then derived to be:
 \begin{equation}
-    I_{\text{Planck}}(f, T) = \frac{2hf^3}{c^2}\frac{1}{\exp(\frac{hf}{k_B T}) - 1}
+    I_{\text{Planck}}(\lambda, T) = \frac{2hc^2}{\lambda^5}\frac{1}{\exp(\frac{hc}{\lambda k_B T}) - 1}
 \end{equation}
 which agrees with the BBR spectrum data across all frequencies\footnote{Further, we can observe that Planck's law agrees with Wien's law in the high-frequency limit, and with Rayleigh-Jeans' law in the low-frequency limit.}. It should also be noted that the integral over all $f$ of the above radiance law yields is finite, resolving the ultraviolet catastrophe. 
 
 \begin{figure}[htbp]
     \centering
-    TODO - plot of the three laws.
-    \caption{<caption>}
+    \includegraphics[]{Images/fig-BBRspectra.pdf}
+    \caption{Plots of the black body emission spectra at $T = 5800\mathrm{K}$ (the approximate temperature of the surface of the sun) as predicted by Wien's Law, Rayleigh-Jean's Law, and Planck's Law. Planck's Law was found to agree with experimental observations for all wavelengths. Wien's Law agrees with observations well in the short wavelength limit but fails for long wavelengths. Rayleigh-Jean's Law agrees with observations in the long wavelength limit but fails at short wavelengths, and in fact the predicted emitted energy diverges.}
     \label{fig-BBRspectra}
 \end{figure}
 
@@ -47,7 +47,7 @@ The so-called ``wave-particle'' duality would be confirmed in 1927 by the Daviss
 
 Our third founder of interest is Schr\"{o}dinger, who postulated the Schr\"{o}dinger equation (expressed below in the position basis) in 1926:
 \begin{equation}
-    i\hbar \dpd{}{t}\Psi(\v{r}, t) = \left[\frac{-\hbar^2}{2m}\nabla^2 + V(\v{r}, t)\right] \Psi(\v{r}, t).
+    i\hbar \dpd{}{t}\psi(\v{r}, t) = \left[\frac{-\hbar^2}{2m}\nabla^2 + V(\v{r}, t)\right] \psi(\v{r}, t).
 \end{equation}
 It should be noted that this is one of the two core formulas of non-relativistic quantum mechanics, and is the quantum-mechanical equivalent of Newton's laws. It however does not cover the effects of special relativity (for which we defer the reader to a future course on quantum field theory) or quantum measurement (which we shall address now). 
 
@@ -55,8 +55,8 @@ An illuminating demonstration of quantum measurement takes the form of the Stern
 
 \begin{figure}[htbp]
     \centering
-    TODO - Sketch of the experiment
-    \caption{Illustration of the Stern-Gerlach experiment.}
+    \includegraphics[]{Images/fig-SGexpsketch.pdf}
+    \caption{Illustration of the Stern-Gerlach experiment. Silver (Ag) atoms are heated in an oven and escape, and pass through a collimator to form a narrow beam. They then pass through an inhomogenous magnetic field which deflects the atoms. The position of the atoms is then recorded when they hit the screen.}
     \label{fig-SGexpsketch}
 \end{figure}
 
@@ -81,7 +81,7 @@ So in the inhomogenous field produced by the asymmetric magnets, the silver atom
 
 \begin{figure}[htbp]
     \centering
-    TODO - Picture
+    \includegraphics[]{Images/fig-SGexpmagnet.pdf}
     \caption{The inhomogenous magnetic field used in the Stern-Gerlach experiment, which deflects the silver atoms due to their magnetic dipole moment proportional to electron spin.}
     \label{fig-SGexpmagnet}
 \end{figure}
@@ -90,20 +90,7 @@ Classically, the magnetic moment $\v{\mu}$ can point in any direction, and there
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=1]
-        \shade[even odd rule,inner color=black,outer color=white] (0,0) circle (0.5);
-        \shade[even odd rule,inner color=black,outer color=white] (0,-3) circle (0.5);
-        \draw[thick] (-2.5, -4) -- (-2.5, 1) -- (2.5, 1) -- (2.5, -4) -- cycle;
-        \node[above] at (0, 1) {QM};
-
-        \def\particles{(-5.5,-1.5) }
-        \foreach \point in \particles{
-        \foreach\i in {0,0.01,...,1.5} {
-        \fill[opacity=\i*0.02,black] \point circle ({0.6-\i} and {1-2*\i});         
-        }}
-        \draw[thick] (-8, -4) -- (-8, 1) -- (-3, 1) -- (-3, -4) -- cycle;
-        \node[above] at (-5.5, 1) {Classical};
-    \end{tikzpicture}
+    \includegraphics[]{Images/fig-SGexppredictions.pdf}
     \caption{Classical prediction (left) and quantum mechanical prediction (right) for the Stern-Gerlach experiment. The screen on the right was observed in experiment.}
     \label{fig-SGexppredictions}
 \end{figure}
@@ -202,3 +189,101 @@ As a first use of the inner product, let us return to our initial motivation for
     0 \leq \abs{\braket{\phi}{\psi}} \leq 1.
 \end{equation}
 We therefore can use the inner product as a method to evaluate the likeness of states. $\braket{\phi}{\psi} = 0$ means that $\ket{\psi}$ and $\ket{\phi}$ are maximally different, and $\abs{\braket{\phi}{\psi}} = 1$ corresponds to $\ket{\psi}$ and $\ket{\phi}$ being the same.
+
+Next, we move onto a discussion of bases of Hilbert spaces. Since Hilbert spaces are vector spaces, they admit a basis. Let us recall what a basis is.
+
+\begin{defbox}{: Basis}\label{def-basis}
+    A \emph{basis} $\mathcal{B}$ of $\H$ is a set of states $\mathcal{B} = \set{\ket{b_j}}_j$ such that every state $\ket{\psi} \in \H$ can be written in the form:
+    \begin{equation}\label{eq-expandpsibasis}
+        \ket{\psi} = \sum_j \psi_j \ket{b_j}
+    \end{equation}
+    with $\psi_j \in \CC \forall j$, and the expansion on the RHS is unique.
+
+    $\abs{\mathcal{B}}$ is the dimension of $\mathcal{H}$\footnotemark. 
+\end{defbox}
+\footnotetext{In the case where the Hilbert space is infinite-dimensional, there are additional complications (and in fact, two different kinds of bases!) In general the work we do in this course works perfectly well in the finite-dimensional case, and in the infinite dimensional case we will have to wave our hands a bit in order to avoid getting into the weeds of functional analysis; this is a physics course after all.}
+
+Of particular interest to us will be orthonormal bases, or ONBs.
+
+\begin{defbox}{: Orthonormal bases}\label{def-ONB}
+    A basis $\mathcal{B} = \set{\ket{b_j}}_j$ is \emph{orthonormal} if
+    \begin{equation}
+        \braket{b_i}{b_j} = \delta_{ij}.
+    \end{equation}
+    where $\delta_{ij}$ is the Kronecker delta, defined as:
+    \begin{equation}
+        \delta_{ij} = \begin{cases}
+            1 & i = j
+            \\ 0 & i \neq j
+        \end{cases}.
+    \end{equation}
+
+    One can obtain the expansion coefficients $\psi_j$ with respect to ONBs. Writing $\ket{\psi} = \sum_j \psi_j \ket{b_j}$ as in Eq. \eqref{eq-expandpsibasis} and taking the inner product of $\ket{\psi}$ with a vector $\ket{b_i}$ from the ONB, we have:
+    \begin{equation}
+        \braket{b_i}{\psi} = \sum_j \psi_j \braket{b_i}{b_j} = \sum_j \psi_j \delta_{ij} = \psi_i.
+    \end{equation}
+\end{defbox}
+
+We will now prove a useful trick involving ONBs.
+
+\begin{thmbox}{: Resolution of the identity}\label{thm-residentity}
+    For all ONBs $\set{\ket{b_j}}_j$, the following relation holds:
+    \begin{equation}
+        \sum_j \dyad{b_j}{b_j} = \II
+    \end{equation}
+    where $\II$ is the identity operator on the Hilbert space.
+\end{thmbox}
+
+\begin{proof}
+    Recall that $\ket{\psi} = \sum_j \psi_j \ket{b_j}$ for any $\ket{\psi} \in \H$ and for any basis $\set{\ket{b_j}}_j$ of $\H$. Further, recall that $\psi_j = \braket{b_j}{\psi}$ if the basis is orthonormal. Hence we have that:
+    \begin{equation}
+        \ket{\psi} = \sum_j \braket{b_j}{\psi}\ket{b_j} = \sum_j \ket{b_j}\left(\braket{b_j}{\psi}\right) = \sum_j \left(\dyad{b_j}{b_j}\right)\ket{\psi} = \left(\sum_j \dyad{b_j}{b_j}\right)\ket{\psi}.
+    \end{equation}
+    Since the above relation holds for all $\ket{\psi}$, it follows then that $\sum_j\dyad{b_j}{b_j}$ is the identity as claimed.
+\end{proof}
+
+The above discussion has been extremely abstract and mathematical so far; let us now reconnect with the physics. In a quantum measurement, the alternatives $\set{\ket{m_j}, j \in \text{ Outcomes }}$ for the states after measurement will:
+\begin{itemize}
+    \item Form a basis
+    \item And are pairwise orthogonal, i.e. $\braket{m_i}{m_j} = 0, \forall i \neq j$. 
+\end{itemize}
+With the necessary mathematical formalism under our belt, we can now state a first version of the Dirac postulate and Born rule axioms.
+
+\begin{axiombox}{: Quantum Measurement (Version 1)}\label{axiom-measurementver1}
+    \textbf{Dirac postulate:} Under quantum measurement, the measured quantum state $\ket{\psi}$ is probabilistically changed into one of a number of alternatives $\set{\ket{m_j}}_j$, with:
+    \begin{equation}
+        \braket{m_i}{m_j} = \delta_{ij}.
+    \end{equation}
+    Note that $\set{\ket{m_j}}_j$ forms an ONB.
+    
+    \textbf{Born rule:} Given a quantum state $\ket{\psi}$, the probability for obtaining outcome $j$, corresponding to post-measurement state $\ket{m_j}$, is:
+    \begin{equation}
+        p_j = \abs{\braket{m_j}{\psi}}^2.
+    \end{equation}
+\end{axiombox}
+
+There are now two questions that may arise. The first is that the statement of the Dirac projection postulate and the Born rule do not match that found in Table \ref{table-QMaxioms}. The above statement requires some refinement to deal with cases of degeneracy, which we will soon address. The second question concerns the post-measurement states $\set{\ket{m_j}}_j$; namely, how are they are determined? We will address the latter question first, and build up the formalism to state the measurement axioms in full generality. To this end, we define linear operators, which describe quantum mechanical observables and evolution. 
+
+\begin{defbox}{: Linear Operators}\label{def-linops}
+    $A$ is an \emph{operator} that acts on a Hilbert space $\H$ if $\forall \ket{\psi} \in \H$, $A\ket{\psi} \in \H$. $A$ is $\emph{linear}$ if:
+    \begin{equation}
+        A(\alpha\ket{\psi} + \beta\ket{\phi}) = \alpha(A\ket{\psi}) + \beta(A\ket{\phi})
+    \end{equation}
+    $\forall \ket{\psi}, \ket{\phi} \in \H$ and $\forall \alpha, \beta \in \CC$.
+\end{defbox}
+
+A point of notation; we will use capital letters to denote operators in this course. Some sources also use hats to denote this (e.g. $\hat{A}$). Note that linear operators can be added and multiplied (more accurately, composed) to yield other linear operators. They are associative and distributive under these operations, i.e. for all linear operators $A, B, C$ we have:
+\begin{equation}
+    (A + B) + C = A + (B + C)
+\end{equation}
+\begin{equation}
+    (AB)C = A(BC)
+\end{equation}
+\begin{equation}
+    A(B + C) = AB + AC.
+\end{equation}
+However, note that in general operators are \emph{not} commutative, that is:
+\begin{equation}
+    AB \neq BA.
+\end{equation}
+

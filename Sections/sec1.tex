@@ -566,7 +566,16 @@ $\ket{+}$ has eigenvalue $+\hbar$, $\ket{0}$ has eigenvalue zero, and $\ket{-}$ 
 \begin{equation}
     S_z^2 = \hbar^2(\dyad{+}{+} + \dyad{-}{-})
 \end{equation}
-Now, we find that both $\ket{+}$ and $\ket{-}$ have eigenvalue $+\hbar^2$. So, if we measured $S_z^2$ for a state $\ket{\psi}$ and got outcome $\hbar^2$, our current formulation is ill-equipped to deduce what the post-measurement state would be. In order to refine our formulation, we introduce the notion of a projector.
+Now, we find that both $\ket{+}$ and $\ket{-}$ have eigenvalue $+\hbar^2$. So, if we measured $S_z^2$ for a state $\ket{\psi}$ and got outcome $\hbar^2$, our current formulation is ill-equipped to deduce what the post-measurement state would be. In order to refine our formulation, we require the notion of a projector.
+
+Another example (which we cannot discuss in full detail yet) is that of ``spooky action at a distance'' (coined by the one and only Einstein). In this setting, we have a two-particle system which is in an entangled Bell state (to be defined in full mathematical detail later; for now, take entangled to mean ``stronger than classically correlated'', or ''it is impossible to describe the individual subsystems/particles, and only the joint system can be described''). We then separate the two particles some great distance; say the Earth and moon. When we measure the particle on Earth (but do nothing to the particle on the moon), we find that upon knowing the Earth measurement outcome we \emph{immediately} know what the post-measurement state of the particle on the moon is. This seems counterintutive, and indeed, superliminal; it seems as though the measurement on Earth affects the state on the moon faster than the speed of light! While this setup does not actually turn out to violate special relativity (and indeed, we will prove later in the course that no quantum communication protocol can be superliminal), it is certainly of interest as depicting non-classical phenomenology. It turns out that the measurement of just the particle on Earth conducted in this setting corresponds to a measurement of a degenerate (joint) observable; we therefore also require a reformulation of our measurement axioms involving projectors here. Without further ado, let us define what a projector is.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Images/fig-spookyaction.pdf}
+    \caption{Visualization of the ``spooky action at a distance'' scenario. A two-particle state is prepared in an entangled Bell state. The particles are then spatially separated a great distance; here depicted as one particle on the Earth and one particle in the moon. When the particle on Earth (and \emph{only} the particle on Earth) is measured, the entanglement structure of the state leads to the particle on the moon being projected into a post-measurement state that is immediately known to the experimenter on Earth based on their measurement outcome. The measurement conducted in this scenario of interest turns out to be one with degeneracy, and hence we require a reformulation of measurement in order to describe it.}
+    \label{fig-spookyaction}
+\end{figure}
 
 \begin{defbox}{: Projectors}
     A linear operator $\Pi$ is a \emph{projector} if it satisfies:
@@ -693,5 +702,140 @@ To conclude this section, we revisit the idea of individual vs. averaged measure
 so we see that Eq. \eqref{eq-expection2} holds as in the non-degenerate case.
 
 \subsection{Compatible and Incompatible Observables}
+We have seen in the previous sections how quantum measurement is an active process; through measurement the input state is projected into a subspace (corresponding to the measured eigenvalue). This has implications for whether the value of two quantum observables can be simultaneously known; we will illuminate this with a motivating example before exploring this idea more rigorously. Consider a \emph{sequential} Stern-Gerlach experiment, as pictured in Fig. \ref{fig-SGsequential}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[red, thick] (0, 0) -- (1, 0) -- (1, 1) -- (0, 1) -- cycle;
+        \node[red] at (0.5, 0.5) {Oven};
+        \draw[] (1, 0.5) -- (2, 0.5);
+        \draw[thick] (2, -0.5) -- (2, 1.5) -- (4, 1.5) -- (4, -0.5) -- cycle;
+        \node[] at (3, 0.5) {SG-Z};
+        \draw[] (4, 1) -- (5, 1);
+        \draw[] (4, 0) -- (4.45, 0);
+        \filldraw[fill = black, draw = black] (4.45, -0.5) -- (4.45, 0.5) -- (4.65, 0.5) -- (4.65, -0.5) -- cycle;
+        \draw[thick] (5, -0.5) -- (5, 1.5) -- (7, 1.5) -- (7, -0.5) -- cycle;
+        \node[] at (6, 0.5) {SG-X};
+        \draw[] (7, 1) -- (8, 1);
+        \draw[] (7, 0) -- (7.45, 0);
+        \filldraw[fill = black, draw = black] (7.45, -0.5) -- (7.45, 0.5) -- (7.65, 0.5) -- (7.65, -0.5) -- cycle;
+        \draw[thick] (8, -0.5) -- (8, 1.5) -- (10, 1.5) -- (10, -0.5) -- cycle;
+        \node[] at (9, 0.5) {SG-Z};
+        \draw[] (10, 1) -- (11, 1);
+        \draw[] (10, 0) -- (11, 0);
+        \node[right] at (11, 1) {?};
+        \node[right] at (11, 0) {?};
+    \end{tikzpicture}
+   \caption{Cartoon of a sequential Stern-Gerlach experiment. First, the z-component of the spin of particles coming out of the oven area measured. The $S_z = +\frac{\hbar}{2}$ (spin up/$\ket{\uparrow}$) particles are allowed to go through, while the $S_z = -\frac{\hbar}{2}$ (spin down/$\ket{\downarrow}$) particles are blocked. Then, the $x$-component of the spin is measured, with the $S_x = +\frac{\hbar}{2}$ (spin right/$\ket{+}$) particles allowed to go through, and the $S_x = -\frac{\hbar}{2}$ (spin left/$\ket{-}$) particles blocked. Finally, the $z$-component of the spin is measured again.}
+    \label{fig-SGsequential}
+\end{figure}
+
+Let us carry out the calculation to deduce what we would find at the output ports of the above experiment. In the first $S_z$ measurement, there is a 50/50 probability of measuring the spin to be spin-up, and so 50\% of the original particles go through. Then recalling that $\ket{\pm} = \frac{\ket{\uparrow} \pm \ket{\downarrow}}{\sqrt{2}}$, we have that $\ket{\uparrow} = \frac{\ket{+} + \ket{-}}{\sqrt{2}}$ and so we find in the second measurement that $p(+) = \abs{\braket{+}{\uparrow}}^2 = \frac{1}{2}$ And $p(-) = \abs{\braket{-}{\uparrow}}^2 = \frac{1}{2}$ (we may use the non-degenerate formulation of the Born rule here) so half of the particles go through - one quarter of the original particles from the oven. Now, we note something interesting; when we do the probability calculation for the third measurement, we find $p(\uparrow) = \abs{\braket{\uparrow}{+}}^2 = \frac{1}{2}$ and $p(\downarrow) = \abs{\braket{\downarrow}{+}}^2 = \frac{1}{2}$, so we find that one eigth of the original particles from the oven are present at each of the two output ports. Classically, this is quite strange - a classical measurement does not disturb the system, so when we measure the $z$-component of spin for the second time, we should expect to get 100\% spin-up (as we post-selected on spin-up in the first measurement)! But this is indeed not what happens quantum mechanically - in QM, measurements physically change the state of the system, so there are physical observables that are incompatible with each other (that is, there value cannot be simulataneously precisely known). Let us formalize this notion with a definition:
+
+\begin{defbox}{: Compatible Observables}
+    Two observables $A, B$ are \emph{compatible} if:
+    \begin{equation}
+        [A, B] \coloneqq AB - BA = 0.
+    \end{equation}
+\end{defbox}
+
+The $[\cdot, \cdot]$ appearing in the above definition is known as the \emph{commutator}, and can be interpreted as quantifying the extent to which two objects commute.
+
+Compatible observables are characterized by the following properties:
+\begin{itemize}
+    \item The probability $p(a, b)$ for obtaining the outcome $a$ for $A$ and $b$ for $B$ is independent of the order of measurement.
+    \item Compatible measurements do not disturb one another; suppose $A$ is measured with outcome $a$ and then $B$ with outcome $b$. If $A$ is measured a second time, then the outcome is $a$ again, with certainty.
+\end{itemize}
+
+These properties follow as the result of the following Lemma:
+
+\begin{lembox}{}
+    Compatible observables have a joint eigenbasis.
+\end{lembox}
+
+\begin{proof}
+    Choose an (orthonormal) eigenbasis $\set{\ket{a}}$ of $A$. Since $[A, B] = 0$, it follows that $\bra{a'}[A, B]\ket{a} = 0$ and so:
+    \begin{equation}
+        0 = \bra{a'}[A, B]\ket{a} = (\bra{a'}A)B\ket{a} - \bra{a'}B(A\ket{a}) = (a' - a)\bra{a'}B\ket{a}
+    \end{equation}
+    So if $a \neq a'$, it follows that $\bra{a'}B\ket{a} = 0$. If $A$ is non-degenerate, we are immediately done as $B$ is diagonal in the basis $\set{\ket{a}}$ and hence it is also an eigenbasis of $B$. However, if $A$ is degenerate then $a = a'$ is possible for distinct $\ket{a}, \ket{a'}$. This means that $B$ is block diagonal in the basis $\set{\ket{a}}$. For example in the case where $A$ has two degenerate eigenvalues $a_1$ and three degenerate eigenvalues $a_2$, $B$ in this eigenbasis will be block diagonal with two blocks:
+    \begin{equation}
+        \vcenter{\hbox{\begin{tikzpicture}
+            \node[] at (0, 0) {$A = \m{a_1 & 0 & & & \\ 0 & a_1 & & & \\ & & a_2 & 0 & 0 \\ & & 0 & a_2 & 0 \\ & & 0 & 0 & a_2}$};
+            \node[font=\large] at (1.05, 0.7) {0};
+            \node[font=\large] at (-0.6, -0.4) {0};
+            \draw[dashed] (-1.1, 0.175) -- (-0.1, 0.175) -- (-0.1, 1.125) -- (-1.1, 1.125) -- cycle;
+            \draw[dashed] (0.2, -1.1) -- (1.9, -1.1) -- (1.9, 0.175) -- (0.2, 0.175) -- cycle;
+
+            \node[] at (5, 0) {$B = \m{\phantom{a_1} & \phantom{0} & & & \\ \phantom{0} & \phantom{a_1} & & & \\ & & \phantom{a_2} & \phantom{0} & \phantom{0} \\ & & \phantom{0} & \phantom{a_2} & \phantom{0} \\ & & \phantom{0} & \phantom{0} & \phantom{a_2}}$};
+            \node[font=\large] at (1.05+5, 0.7) {0};
+            \node[font=\large] at (-0.6+5, -0.4) {0};
+            \draw[dashed, fill=black] (-1.1+5, 0.175) -- (-0.1+5, 0.175) -- (-0.1+5, 1.125) -- (-1.1+5, 1.125) -- cycle;
+            \draw[dashed, fill=black] (0.2+5, -1.1) -- (1.9+5, -1.1) -- (1.9+5, 0.175) -- (0.2+5, 0.175) -- cycle;
+
+        \end{tikzpicture}}}
+    \end{equation}
+    Now, we borrow a a known theorem from linear algebra (the Spectral theorem) that a Hermitian matrix can be diagonalized with a unitary matrix - hence, there exists some unitary transformation $U$ (which will have a block-diagonal matrix representation consisting of blocks $U_1, U_2$ in the same location as the blocks of $B$) which diagonalizes $B$:
+    \begin{equation}
+        \vcenter{\hbox{\begin{tikzpicture}
+            \node[] at (0, 0) {$U = \m{\phantom{a_1} & \phantom{0} & & & \\ \phantom{0} & \phantom{a_1} & & & \\ & & \phantom{a_2} & \phantom{0} & \phantom{0} \\ & & \phantom{0} & \phantom{a_2} & \phantom{0} \\ & & \phantom{0} & \phantom{0} & \phantom{a_2}}$};
+            \node[font=\large] at (1.05, 0.7) {0};
+            \node[font=\large] at (-0.6, -0.4) {0};
+            \draw[dashed] (-1.1, 0.175) -- (-0.1, 0.175) -- (-0.1, 1.125) -- (-1.1, 1.125) -- cycle;
+            \draw[dashed] (0.2, -1.1) -- (1.9, -1.1) -- (1.9, 0.175) -- (0.2, 0.175) -- cycle;
+            \node[] at (-0.6, 0.65) {$U_1$};
+            \node[] at (1.05, -0.4625) {$U_2$};
+        \end{tikzpicture}}}
+    \end{equation}
+
+    Then, we have that $UAU^\dag = A$ (consider that the blocks of $U$ act on the eigenspaces of $A$ independently, and then cancel to the identity by the condition $UU^\dag = I$, thus leaving $A$ invariant) and $UBU^\dag = B'$ is diagonal. In other words, the basis $\set{U^\dag \ket{a}}$ is a joint eigenbasis of $A, B$ and we are done.
+\end{proof}
+
+Since $A, B$ share an eigenbasis, in this same basis the projectors corresponding to the various are diagonal. It therefore follows that:
+\begin{equation}
+    [\Pi_{A, a}, \Pi_{B, b}] = [\Pi_{A, a}, B] = [A, \Pi_{B, b}] = 0.
+\end{equation}
+
+From this fact, we can argue the two properties of compatible observables. First, we show that the probability $p(a, b)$ for obtaining the outcome $a$ for $A$ and $b$ for $B$ is independent of the order of measurement.
+
+Suppose we measure $A$ first, then $B$. Then the post measurement state after the first measurement is $\frac{\Pi_{a, a}\ket{\psi}}{\sqrt{\bra{\psi}\Pi_{A, a}\ket{\psi}}}$, by the Dirac postulate. The probability to measure $b$ in the second measurement (given that we measured $a$ in the first measurement) is then given by the Born rule to be:
+\begin{equation}
+    p(b\vert a) = \frac{\bra{\psi}\Pi_{A, a}\Pi_{B, b}\Pi_{A, a}\ket{\psi}}{\bra{\psi}\Pi_{A, a}\ket{\psi}}
+\end{equation}
+The probability for measuring $a$ and $b$ is then calculated as:
+\begin{equation}
+    \begin{split}
+        p(a, b) = p(a \cap b) = p(b \vert a)p(a) &= \left(\frac{\bra{\psi}\Pi_{A, a}\Pi_{B, b}\Pi_{A, a}\ket{\psi}}{\bra{\psi}\Pi_{A, a}\ket{\psi}}\right)\bra{\psi}\Pi_{A, a}\ket{\psi}
+        \\ &= \bra{\psi}\Pi_{A, a}\Pi_{B, b}\Pi_{A, a}\ket{\psi}
+        \\ &= \bra{\psi}\Pi_{A, a}^2\Pi_{B, b}\ket{\psi}
+        \\ &= \bra{\psi}\Pi_{A, a}\Pi_{B, b}\ket{\psi}
+    \end{split}
+\end{equation}
+where in the second-to-last equality we use that the projectors commute, and in the last equality we use that projectors are idempotent. If we measure $B$ first and then $A$ and go through the same calculation (simply by interchanging $A \leftrightarrow B$), we find the exact same expression, and therefore we conclude that $p(a, b)$ is indepdendent of measurement order.
+
+Let us also demonstrate that the compatible measurements do not disturb one another. If we measure $A$ with outcome $a$, we have $\ket{\psi} \mapsto \ket{a}$ with $A \ket{a} = a\ket{a}$. If we then measure $B$, we have $\ket{a} \mapsto \frac{\Pi_{B, b}\ket{a}}{\sqrt{\bra{a}\Pi_{B, b}\ket{a}}}$. Using the fact that $A, \Pi_{B, b}$ commute we then observe:
+\begin{equation}
+    A\left( \frac{\Pi_{B, b}\ket{a}}{\sqrt{\bra{a}\Pi_{B, b}\ket{a}}}\right) = \frac{\Pi_{B, b}A\ket{a}}{\sqrt{\bra{a}\Pi_{B, b}\ket{a}}} = a\left( \frac{\Pi_{B, b}\ket{a}}{\sqrt{\bra{a}\Pi_{B, b}\ket{a}}}\right)
+\end{equation}
+so the post-measurement state after measuring $B$ is still an eigenstate of $A$, with the same eigenvalue $a$!
+
+We note an important example of compatible observables. For all observables $A$, it holds that $[A^n, A^m] = 0$ for all $n, m \in \NN$. In other words, all of $\set{A^k, k \in \NN}$ can be simultaneously measured. In the homework, you will be tasked with considering the relationship between the expectation values $\abs{A^k}_\psi = \bra{\psi}A^k\ket{\psi}$ of observables $A^k$, and the measurement probabilities $p(i) = \abs{\braket{b_i}{\psi}}^2$ where $\set{\ket{b_i}}_i$ is the eigenbasis of $A$. 
+
+Alongside the discussion of compatible observables runs the consideration of incompatible observables:
+
+\begin{defbox}{: Incompatible Observables}
+    Two observables $A, B$ are \emph{incompatible} if:
+    \begin{equation}
+        [A, B] \neq 0.
+    \end{equation}
+\end{defbox}
+Incompatible observables have the properties that: 
+\begin{itemize}
+    \item The probability $p(a, b)$ for obtaining the outcome $a$ for $A$ and $b$ for $B$ is generally dependent of the order of measurement.
+    \item Incompatible measurements disturb one another.
+\end{itemize}
+A good example is our motivating example of the $S_z$ and $S_x$ measurements at the beginning of this section. Indeed, $[S_z, S_x] = i\hbar S_y \neq 0$ and so the two observables are incompatible.  
 
 \subsection{Position and Momentum}
+In this section, we discuss two key examples of observables - namely position and momentum. We discuss their eigenstates, which take on a continuous range. We discuss their commutation relation which is the axiomatic foundation of how they relate. We derive the momentum operator in the position basis, and show that position and momentum wavefunctions relate via a Fourier transform. Finally, we will derive the famous Heisenberg uncertainty relation.

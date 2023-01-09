@@ -839,3 +839,47 @@ A good example is our motivating example of the $S_z$ and $S_x$ measurements at 
 
 \subsection{Position and Momentum}
 In this section, we discuss two key examples of observables - namely position and momentum. We discuss their eigenstates, which take on a continuous range. We discuss their commutation relation which is the axiomatic foundation of how they relate. We derive the momentum operator in the position basis, and show that position and momentum wavefunctions relate via a Fourier transform. Finally, we will derive the famous Heisenberg uncertainty relation.
+
+The spin observables we have considered so far in this course have taken on discrete values (e.g. the eigenvalues of $S_z$ for a spin-1/2 particle are $\pm \frac{\hbar}{2}$). However, the eigenvalues of position and momentum are continuous; for example, a (free) particle in one dimension can have $x \in (-\infty, \infty)$. To handle this, we will content ourselves to generalize the finite-dimensional formalism to the infinite-dimensional setting in the natural way, sweeping the functional analytic details under the rug.
+
+So, we consider the (one-dimensional) position operator $X$, with a complete and orthonormal set of eigenstates $\set{\ket{x}}$ that satisfy $X\ket{x} = x\ket{x}$ with $x$ the position eigenvalue. The resolution of identity (as we discussed in a previous section) reads $\int dx \dyad{x}{x} = \mathbb{I}$, and the orthonormality relation reads $\braket{x'}{x} = \delta(x - x')$. 
+
+We can also consider the (one-dimensional) linear momentum operator $P$, which has a complete and orthonormal set of eigenstates $\set{\ket{p}}$ that satisfy $P\ket{p} = p\ket{p}$ with $p$ the momentum eigenvalue. The resolution of identity reads $\int dp \dyad{p}{p} = \mathbb{I}$ and the orthonormality relation reads $\braket{p'}{p} = \delta(p - p')$. 
+
+We define the position and momentum wavefunctions $\psi(x)/\tilde{\psi}(p)$ as the expansion coefficients of a state $\ket{\psi}$ in the position/momentum bases:
+\begin{equation}
+    \ket{\psi} = \left(\int dx \dyad{x}{x}\right)\ket{\psi} = \int dx \braket{x}{\psi} \ket{x} = \int dx \psi(x) \ket{x}
+\end{equation}
+\begin{equation}
+    \ket{\psi} = \left(\int dp \dyad{p}{p}\right) \ket{\psi} = \int dp \braket{p}{\psi} \ket{p} = \int dp \tilde{\psi}(p) \ket{p}.
+\end{equation}
+
+Having introduced some operators with continuous spectra, let us return briefly back to our example of higher moments, namely expectation values of $X^n$. Calculating the expectation of $X$, we have:
+\begin{equation}
+   \avg{X}_\psi =  \bra{\psi}X\ket{\psi} = \int dx dy \braket{\psi}{x} \bra{x}X\ket{y} \braket{y}{\psi} = \int dx dy \psi^*(x) y\delta(x - y) \psi(y) = \int dx x\abs{\psi(x)}^2
+\end{equation}
+which is the average position of the state $\ket{\psi}$. Calculating the expectation of $X^2$, we have:
+\begin{equation}
+    \avg{X^2}_\psi = \bra{\psi}X\ket{\psi} = \int x^2 \abs{\psi(x)}^2
+\end{equation}
+which gives information about the width - $\abs{\psi(x)}^2$ has the interpretation of a probability density in position space, and the expectation values of $X^n$ gives information about the distribution. For example the variance yields a measure of the deviation from the mean value:
+\begin{equation}
+    \avg{(\Delta X)^2}_\psi = \avg{(X - I\avg{X})^2}_\psi = \avg{X^2}_\psi - \avg{X}^2_\psi
+\end{equation} 
+We can also calculate the skewedness $\avg{(\Delta X)^3}$, which is a measure of how asymmetric the distribution is, and so on. All moments taken together contain the same information\footnote{Well, not quite, there are some \href{https://math.stackexchange.com/questions/1790858/two-random-variables-with-same-moments}{pathological counterexamples}} as the probability density $\abs{\psi(x)}^2$. 
+
+Having now a better understanding of moments and continuous probability densities, let us discuss the fundamental relationship between position and momentum.
+
+\begin{axiombox}{: Canonical Commutation Relations}
+    The commutation relations between position and momentum are:
+    \begin{equation}
+        [X_i, X_j] = 0, \quad [P_i, P_j] = 0, \quad [X_i, P_j] = i\hbar\delta_{ij}\mathbb{I}
+    \end{equation}
+    where the subscript denotes the component of position/momentum, and $\delta_{ij}$ is the Kronecker delta.
+\end{axiombox}
+Note that there is a noteworthy relationship between classical and quantum mechanics:
+\begin{equation}
+    [\cdot, \cdot]_{\text{classical}} \mapsto \frac{[\cdot, \cdot]}{i\hbar}
+\end{equation}
+where $[\cdot, \cdot]_{\text{classical}}$ denotes the Poisson bracket.
+

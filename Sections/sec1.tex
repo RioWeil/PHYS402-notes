@@ -847,10 +847,10 @@ So, we consider the (one-dimensional) position operator $X$, with a complete and
 We can also consider the (one-dimensional) linear momentum operator $P$, which has a complete and orthonormal set of eigenstates $\set{\ket{p}}$ that satisfy $P\ket{p} = p\ket{p}$ with $p$ the momentum eigenvalue. The resolution of identity reads $\int dp \dyad{p}{p} = \mathbb{I}$ and the orthonormality relation reads $\braket{p'}{p} = \delta(p - p')$. 
 
 We define the position and momentum wavefunctions $\psi(x)/\tilde{\psi}(p)$ as the expansion coefficients of a state $\ket{\psi}$ in the position/momentum bases:
-\begin{equation}
+\begin{equation}\label{eq-positionwf}
     \ket{\psi} = \left(\int dx \dyad{x}{x}\right)\ket{\psi} = \int dx \braket{x}{\psi} \ket{x} = \int dx \psi(x) \ket{x}
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq-momentumwf}
     \ket{\psi} = \left(\int dp \dyad{p}{p}\right) \ket{\psi} = \int dp \braket{p}{\psi} \ket{p} = \int dp \tilde{\psi}(p) \ket{p}.
 \end{equation}
 
@@ -883,5 +883,118 @@ Note that there is a noteworthy relationship between classical and quantum mecha
 \end{equation}
 where $[\cdot, \cdot]_{\text{classical}}$ denotes the Poisson bracket.
 
-We can understand the notion of momentum as a generator of translations using these commutation relations:
+We can understand the notion of momentum as a generator of translations using these commutation relations. To this end, let us define:
 
+\begin{defbox}{: Translation Operator}
+    The translation operator is defined as the following imaginary exponential:
+    \begin{equation}
+        \mathcal{T}(\Delta x) \coloneqq e^{-i\frac{P}{\hbar}\Delta x}
+    \end{equation}
+    where $P$ is the momentum operator and $\Delta x$ some real number.
+\end{defbox}
+
+We now claim that the translation operator lives up to its namesake:
+
+\begin{propbox}{}
+    The translation operator translates a position eigenket, that is:
+    \begin{equation}
+        \mathcal{T}(\Delta x)\ket{x} = \ket{x + \Delta x}
+    \end{equation}
+\end{propbox}
+
+\begin{proof}
+    Let us Taylor expand the translation operator (recalling the Taylor expansion of the exponential - of course, this is how exponentials of operators are formally defined):
+    \begin{equation}
+        \mathcal{T}(\Delta x) = \II - i\frac{P}{\hbar}\Delta x + O((\Delta x)^2).
+    \end{equation}
+    Furthermore, let us recall the eigenvalue equation $X\ket{x} = x\ket{x}$. Now, we consider $\mathcal{T}(\Delta x)\ket{x}$:
+    \begin{equation}
+        \begin{split}
+            X\mathcal{T}(\Delta x)\ket{x} &= X\left(\II - i\frac{P}{\hbar}\Delta x + O((\Delta x)^2)\right)\ket{x}
+            \\ &= X\ket{x} - i\frac{\Delta x}{\hbar}XP\ket{x} + O((\Delta x)^2)
+            \\ &= x\ket{x} - i\frac{\Delta x}{\hbar}\left(i\hbar \mathbb{I} + PX\right)\ket{x} + O((\Delta x)^2)
+            \\ &= x\ket{x} + \Delta x\ket{x} - i\frac{\Delta x}{\hbar}P x\ket{x} + O((\Delta x)^2)
+            \\ &= (x + \Delta x)\left(\mathbb{I} - i\frac{P}{\hbar}\Delta x\right)\ket{x} + O((\Delta x)^2)
+            \\ &=  (x + \Delta x)\mathcal{T}(\Delta x)\ket{x} + O((\Delta x)^2)
+        \end{split}
+    \end{equation}
+    where in the third equality we note the application of the canonical commutation relation. Also note in the fifth equality we introduce a term $\propto (\Delta x)^2$ but we may do this freely as such terms are absorbed by $O((\Delta x)^2)$. The conclusion is (up to terms of order $(\Delta x)^2$) that $\mathcal{T}(\Delta x)\ket{x}$ is an eigenket of position with eigenvalue $x + \Delta x$  and so $\mathcal{T}(\Delta x)\ket{x} = \ket{x + \Delta x}$. So, for infinitesimal translations (for which we can neglect terms $O((\Delta x)^2)$) the claim holds. We are then able to conclude the result for general translations by considering a general translation as a composition of many infinitesimal ones.
+\end{proof}
+
+Note: We could instead have posited as an axiom the above property of the translation operator/momentum as a generator of translations, and from there derived the canonical commutation relations (and in fact Sakurai derives things in this order) - there is not a huge difference as one set of relations can always be derived from the other.
+
+Using the translation operator, we can derive the form of the momentum operator in the position basis - this will be useful for deriving the form of the Schrodinger equation in the position basis from the general basis-independent equation, as we will do in the next part of the course.
+
+\begin{propbox}{: Momentum Operator in Position basis}
+    For a general state $\ket{\alpha}$, we have:
+    \begin{equation}
+        \bra{x}P\ket{\alpha} = -i\hbar\dpd{}{x}\braket{x}{\alpha}
+    \end{equation}
+\end{propbox}
+
+\begin{proof}
+We consider operating the translation operator $\mathcal{T}(\Delta x)$ on the general state $\ket{\alpha}$. We consider small $\Delta x$ so as to neglect terms of order $(\Delta x)^2$ and higher:
+\begin{equation}
+    \begin{split}
+        \left(\mathbb{I} - i\frac{P}{\hbar}\Delta x\right)\ket{\alpha} &= \mathcal{T}(\Delta x)\ket{\alpha} 
+        \\ &= \int dx' \mathcal{T}(\Delta x)\ket{x'}\braket{x'}{\alpha}
+        \\ &= \int dx' \ket{x' + \Delta x} \braket{x'}{\alpha}
+        \\ &= \int dx' \ket{x'}\braket{x' - \Delta x}{\alpha} 
+        \\ &= \int dx' \ket{x'}\left(\braket{x'}{\alpha} - \Delta x'\dpd{}{x'}\braket{x'}{\alpha}\right)
+    \end{split}
+\end{equation}
+where in the second equality we have inserted the resolution of the identity, in the third equality we use the translation property derived above, in the fourth equality we make the substitution $x' \to x' - \Delta x$, and in the fifth equality we Taylor expand $\braket{x' - \Delta x}{\alpha}$. Now, if we equate order $\Delta x$ terms on both sides, we obtain:
+\begin{equation}
+    -i\frac{P}{\hbar}\Delta x\ket{\alpha} = \int dx' \ket{x'}(-\Delta x'\dpd{}{x'}\braket{x'}{\alpha})
+\end{equation}
+Multiplying both sides by $i\hbar\bra{x}$ and cancelling out the $\Delta x$s:
+\begin{equation}
+    \bra{x}P\ket{\alpha} = \int dx' \braket{x}{x'}\left(-i\hbar \dpd{}{x'}\braket{x'}{\alpha}\right) = \int dx' \delta(x - x')\left(-i\hbar \dpd{}{x'}\braket{x'}{\alpha}\right)
+\end{equation}
+the delta function picks out $x' = x$ in the integral and so we obtain:
+\begin{equation}
+    \bra{x}P\ket{\alpha} = -i\hbar\dpd{}{x}\braket{x}{\alpha}
+\end{equation}
+as claimed.
+\end{proof}
+
+With this representation of the momentum operator derived, we are now able to show that the position and momentum space wavefunctions (Eqs. \eqref{eq-positionwf}, \eqref{eq-momentumwf}) are related via a Fourier transform.
+
+\begin{propbox}{: Fourier transform between position and momentum}
+    Given a state $\ket{\psi}$, its momentum wavefunction $\tilde{\psi}(p)$ and position wavefunction $\psi(x)$ are related by a Fourier transform, that is:
+    \begin{equation}
+        \tilde{\psi}(p) \propto \int dx e^{-ipx/\hbar}\psi(x).
+    \end{equation}
+\end{propbox}
+
+\begin{proof}
+    Recall that:
+    \begin{equation}
+        \tilde{\psi}(p) = \braket{p}{\psi} = \int dx \braket{p}{x}\braket{x}{\psi} = \int dx \braket{p}{x} \psi(x).
+    \end{equation}
+    by definition of the momentum/position wavefunctions and using the resolution of the identity. So, it suffices to show that $\braket{p}{x} \propto e^{-ipx/\hbar}$.
+    
+    We recall the representation $\bra{x}P\ket{\alpha} = -i\hbar\dpd{}{x}\braket{x}{\alpha}$ that we derived just before. Now, set $\ket{\alpha} = \ket{p}$ a momentum eigenstate. We then have that:
+    \begin{equation}
+        \bra{x}P\ket{p} = \bra{x}p\ket{p} = p\braket{x}{p}
+    \end{equation}
+    using the eigenvalue equation, and also that:
+    \begin{equation}
+        \bra{x}P\ket{p} = -i\hbar\dpd{}{x}\braket{x}{p}
+    \end{equation}
+    using our previous result. We therefore obtain the equation:
+    \begin{equation}
+        p\braket{x}{p} = -i\hbar\dpd{}{x}\braket{x}{p}
+    \end{equation}
+    which is a first-order ODE which is easily solved:
+    \begin{equation}
+        \braket{x}{p} \propto e^{ipx/\hbar}
+    \end{equation}
+    and therefore:
+    \begin{equation}
+        \braket{p}{x} = \braket{x}{p}^* \propto e^{-ipx/\hbar}
+    \end{equation}
+    and so we are done.
+\end{proof}
+
+Note that to obtain 

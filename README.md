@@ -20,7 +20,6 @@ Typeset notes for UBC's PHYS 402 "Application of quantum mechanics" course. The 
 * Quantum cryptography
 * Bell inequalities
 * The Kochen-Specker Theorem
-* Quantum computing
 4. Symmetries and Angular Momentum
 * Parity symmetry
 * Lattice translation and Bloch's theorem
@@ -33,7 +32,3 @@ Typeset notes for UBC's PHYS 402 "Application of quantum mechanics" course. The 
 * Time-independent perturbation theory
 * Time-dependent perturbation theory
 * The WKB Approximation
-* The variational method
-6. Identical Particles
-* Symmetrization, bosons, and fermions
-* Two-electron systems and the Helium atom

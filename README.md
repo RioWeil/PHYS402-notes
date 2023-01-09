@@ -13,7 +13,7 @@ Typeset notes for UBC's PHYS 402 "Application of quantum mechanics" course. The 
 * The Heisenberg picture
 * Ehrenfest's theorem
 * The quantum harmonic oscillator
-3. Quantum Foundations
+3. Quantum Information and Foundations
 * Entanglement and its applications
 * The no-cloning theorem
 * Density operators

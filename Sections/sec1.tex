@@ -226,13 +226,13 @@ Of particular interest to us will be orthonormal bases, or ONBs.
 
 We will now prove a useful trick involving ONBs.
 
-\begin{thmbox}{: Resolution of the identity}\label{thm-residentity}
+\begin{propbox}{: Resolution of the identity}\label{thm-residentity}
     For all ONBs $\set{\ket{b_j}}_j$, the following relation holds:
     \begin{equation}
         \sum_j \dyad{b_j}{b_j} = \II
     \end{equation}
     where $\II$ is the identity operator on the Hilbert space.
-\end{thmbox}
+\end{propbox}
 
 \begin{proof}
     Recall that $\ket{\psi} = \sum_j \psi_j \ket{b_j}$ for any $\ket{\psi} \in \H$ and for any basis $\set{\ket{b_j}}_j$ of $\H$. Further, recall that $\psi_j = \braket{b_j}{\psi}$ if the basis is orthonormal. Hence we have that:
@@ -286,7 +286,7 @@ There are now two questions that may arise. The first is that the statement of t
 
 \subsection{Operators and Observables}
 
-\begin{defbox}{: Linear Operators}\label{def-linops}
+\begin{defbox}{: Linear operators}\label{def-linops}
     $A$ is an \emph{operator} that acts on a Hilbert space $\H$ if $\forall \ket{\psi} \in \H$, $A\ket{\psi} \in \H$. $A$ is $\emph{linear}$ if:
     \begin{equation}
         A(\alpha\ket{\psi} + \beta\ket{\phi}) = \alpha(A\ket{\psi}) + \beta(A\ket{\phi})
@@ -342,7 +342,7 @@ However, for special states known as eigenstates of an operator, this is indeed 
 
 Having defined these objects, we state (but do not prove) an important theorem concerning observables:
 
-\begin{thmbox}{: Diagonalization/Spectral Theorem}
+\begin{thmbox}{: Diagonalization/Spectral theorem}
     A Hermitian operator $A$ (i.e. any observable) can be diagonalized; that is, it is able to be written as:
     \begin{equation}
         A = \sum_i a_i \dyad{a_i}{a_i}
@@ -496,7 +496,7 @@ The operator $T$ actually has a special property; namely, it is \emph{unitary}.
         UU^\dagger = U^\dagger U = \II.
     \end{equation}
 \end{defbox}
-\begin{thmbox}{}
+\begin{propbox}{}
     The basis transformation operator between bases $\mathcal{B} = \set{\ket{b_i}}_i$ and $\mathcal{B}' = \set{\ket{a_j}}_j$ defined as:
     \begin{equation}\label{eq-Tbasisagnostic}
         T = \sum_{n} \dyad{a_n}{b_n}
@@ -506,7 +506,7 @@ The operator $T$ actually has a special property; namely, it is \emph{unitary}.
         [T]_{ij} = \braket{b_i}{a_j}
     \end{equation}
     is unitary.
-\end{thmbox}
+\end{propbox}
 \begin{proof}
     First, it should be clear from the basis agnostic definition in Eq. \eqref{eq-Tbasisagnostic} that $T$ is in fact a basis transformation operator, as by inspection it satisfies $T\ket{b_n} = \ket{a_n}$ for $n = 1, 2, \ldots d$. We next verify that it indeed has the claimed matrix representation; in the $\mathcal{B}$ basis, we have:
     \begin{equation}
@@ -618,7 +618,7 @@ where in the second-to-last equality we use that $(\dyad{a}{b})^\dagger = \dyad{
 \end{equation}
 So they are indeed projectors! In this form, we have decomposed the observable $A$ into the parts associated with each eigenvalue in a clear way. These projectors have some properties of note, described in the theorem below.
 
-\begin{thmbox}{}
+\begin{propbox}{}
     Let $\set{\Pi_a}_a$ be the set of projectors associated to an observable $A$ (with $\Pi_a = \sum_{a_i = a}\dyad{a_i}{a_i}$ being the projector onto the eigenvalue-$a$ subspace). These projectors are mutually orthogonal:
     \begin{equation}\label{eq-projectororthogonality}
         \Pi_i\Pi_j = \delta_{ij}\Pi_i
@@ -627,7 +627,7 @@ So they are indeed projectors! In this form, we have decomposed the observable $
     \begin{equation}
         \sum_a \Pi_a = \II.
     \end{equation}
-\end{thmbox}
+\end{propbox}
 \begin{proof}
     The idempotency of projectors covers the $i = j$ case in Eq. \eqref{eq-projectororthogonality}, and if $i \neq j$, then the expression is zero as eigenvectors of an observable $A$ corresponding to distinct eigenvalues are orthogonal. The completeness relation is merely a restatement of the resolution of the identity in terms of projectors.
 \end{proof}
@@ -637,7 +637,7 @@ We are now ready to do our final, complete statement of the axioms of quantum me
 \begin{axiombox}{: Quantum measurement (version 3/final)}
     Let $A =  \sum_a a\Pi_a$ be the observable (a Hermitian operator) being measured,  where the $a$s are the eigenvalues of $A$ and $\set{\Pi_a = \sum_{a_i = a}\dyad{a_i}{a_i}}_a$ are the associated projectors onto the eigenvalue-$a$ subspaces. Let $\ket{\psi}$ be the pre-measurement state.
 
-    \textbf{Dirac Postulate:} If outcome $a$ is measured, then the post measurement state is given by:
+    \textbf{Dirac postulate:} If outcome $a$ is measured, then the post measurement state is given by:
     \begin{equation}\label{eq-diracpostulate}
         \ket{\psi} \mapsto \frac{1}{\sqrt{\bra{\psi}\Pi_a\ket{\psi}}}\Pi_a\ket{\psi}.
     \end{equation}
@@ -733,7 +733,7 @@ We have seen in the previous sections how quantum measurement is an active proce
 
 Let us carry out the calculation to deduce what we would find at the output ports of the above experiment. In the first $S_z$ measurement, there is a 50/50 probability of measuring the spin to be spin-up, and so 50\% of the original particles go through. Then recalling that $\ket{\pm} = \frac{\ket{\uparrow} \pm \ket{\downarrow}}{\sqrt{2}}$, we have that $\ket{\uparrow} = \frac{\ket{+} + \ket{-}}{\sqrt{2}}$ and so we find in the second measurement that $p(+) = \abs{\braket{+}{\uparrow}}^2 = \frac{1}{2}$ And $p(-) = \abs{\braket{-}{\uparrow}}^2 = \frac{1}{2}$ (we may use the non-degenerate formulation of the Born rule here) so half of the particles go through - one quarter of the original particles from the oven. Now, we note something interesting; when we do the probability calculation for the third measurement, we find $p(\uparrow) = \abs{\braket{\uparrow}{+}}^2 = \frac{1}{2}$ and $p(\downarrow) = \abs{\braket{\downarrow}{+}}^2 = \frac{1}{2}$, so we find that one eigth of the original particles from the oven are present at each of the two output ports. Classically, this is quite strange - a classical measurement does not disturb the system, so when we measure the $z$-component of spin for the second time, we should expect to get 100\% spin-up (as we post-selected on spin-up in the first measurement)! But this is indeed not what happens quantum mechanically - in QM, measurements physically change the state of the system, so there are physical observables that are incompatible with each other (that is, there value cannot be simulataneously precisely known). Let us formalize this notion with a definition:
 
-\begin{defbox}{: Compatible Observables}
+\begin{defbox}{: Compatible observables}
     Two observables $A, B$ are \emph{compatible} if:
     \begin{equation}
         [A, B] \coloneqq AB - BA = 0.
@@ -824,7 +824,7 @@ We note an important example of compatible observables. For all observables $A$,
 
 Alongside the discussion of compatible observables runs the consideration of incompatible observables:
 
-\begin{defbox}{: Incompatible Observables}
+\begin{defbox}{: Incompatible observables}
     Two observables $A, B$ are \emph{incompatible} if:
     \begin{equation}
         [A, B] \neq 0.
@@ -870,7 +870,7 @@ We can also calculate the skewedness $\avg{(\Delta X)^3}$, which is a measure of
 
 Having now a better understanding of moments and continuous probability densities, let us discuss the fundamental relationship between position and momentum.
 
-\begin{axiombox}{: Canonical Commutation Relations}
+\begin{axiombox}{: Canonical commutation relations}
     The commutation relations between position and momentum are:
     \begin{equation}
         [X_i, X_j] = 0, \quad [P_i, P_j] = 0, \quad [X_i, P_j] = i\hbar\delta_{ij}\mathbb{I}
@@ -885,7 +885,7 @@ where $[\cdot, \cdot]_{\text{classical}}$ denotes the Poisson bracket.
 
 We can understand the notion of momentum as a generator of translations using these commutation relations. To this end, let us define:
 
-\begin{defbox}{: Translation Operator}
+\begin{defbox}{: Translation operator}
     The translation operator is defined as the following imaginary exponential:
     \begin{equation}
         \mathcal{T}(\Delta x) \coloneqq e^{-i\frac{P}{\hbar}\Delta x}
@@ -925,7 +925,7 @@ Note: We could instead have posited as an axiom the above property of the transl
 
 Using the translation operator, we can derive the form of the momentum operator in the position basis - this will be useful for deriving the form of the Schrodinger equation in the position basis from the general basis-independent equation, as we will do in the next part of the course.
 
-\begin{propbox}{: Momentum Operator in Position basis}
+\begin{propbox}{: Momentum operator in position basis}
     For a general state $\ket{\alpha}$, we have:
     \begin{equation}
         \bra{x}P\ket{\alpha} = -i\hbar\dpd{}{x}\braket{x}{\alpha}
@@ -997,4 +997,182 @@ With this representation of the momentum operator derived, we are now able to sh
     and so we are done.
 \end{proof}
 
-Note that to obtain 
+There is one detail we skipped in the above proof; namely, the normalization of $\braket{x}{p}$. If we want to determine $N$ in $\braket{x}{p} = Ne^{ipx/\hbar}$, we can consider:
+\begin{equation}
+    \begin{split}
+        \delta(x - x') = \braket{x}{x'} &= \int dp \braket{x}{p}\braket{p}{x'}
+        \\ &= \abs{N}^2\int dp e^{ip(x - x')/\hbar}
+        \\ &= \abs{N}^2 2\pi\hbar \delta(x - x')
+    \end{split}
+\end{equation}
+where the last integral is a standard one in Fourier Analysis. comparing the two sides of the equation, we can conclude:
+\begin{equation}
+    N = \frac{1}{\sqrt{2\pi\hbar}}.
+\end{equation}
+
+Now, we move to a discussion of uncertainty relations - the most famous of which is the Heisenberg uncertainty relation of position and momentum. This relation has key physical implications - for example being responsible for the size scale of atoms. Let us explore the HUP with an example before going into its formal derivation.
+
+We consider a variation on the sequential Stern-Gerlach experiment involving position and momentum; in other words, a single-slit diffraction experiment\footnote{This may be familiar to you from a homework assignment in PHYS 200 - if not, we go through it again briefly here together.}!
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Images/fig-singleslitdiffraction.pdf}
+    
+    \caption{Cartoon of a single-slit diffraction experiment. A beam of electrons is fired through a slit, which amounts to a position measurement of the electrons at the slit. The electrons then propogate until they hit the screen, which results in a diffraction pattern (after many electrons are fired) - the momentum of the electron at the slit can then be inferred from the position which the electron hits the screen.}
+    \label{fig-singleslitdiffraction}
+\end{figure}
+
+To understand this experiment quantum-mechanically, we consider that the position of electrons is measured as they pass through a slit; at this point, a reasonable description of the position wavefunction of the electrons is the uniform wavefunction extending across the slit (which we assume to have width $2d$):
+\begin{equation}
+    \psi(x) = \begin{cases}
+        \frac{1}{\sqrt{2d}} & -d \leq x \leq d
+        \\ 0 & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+We can then take the Fourier transform to find the momentum wavefunction:
+\begin{equation}
+    \tilde{\psi}(p) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^\infty dx \psi(x)e^{-ipx/\hbar} = \sqrt{\frac{\hbar}{\pi d}}\frac{\sin(\frac{pd}{\hbar})}{p}
+\end{equation}
+(we skip the algebra here; but this is one special case where one can easily take the Fourier transform. Try it!) The modulus square of this momentum wavefunction yields the diffraction pattern that we see on the experiment screen.
+
+This experiment is interesting to us here because it shows us how both position and momentum cannot be precisely known; Looking at the expression for $\tilde{\psi}(p)$ above, we see that if we decrease the slit size $d$ (i.e. we are more certain of the position of the electron) then the momentum wavefunction spreads out and we are less certain of it (and vise versa) - see Fig. \ref{fig-FTHUP} for a graphical sketch of this.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Images/fig-FTHUP.pdf}
+    \caption{Graphical Depiction of the impact of varying the width of the position wavefunction (slit size) on the momentum wavefunction (diffraction pattern width). As we stretch out the position wavefunction (and the position of the electron becomes more uncertain), the momentum wavefunction compresses, and we are more certain about the momentum of the electron at the slit. However, the position and momentum uncertainty cannot be decreased simultaneously - something that is rigorously characterized in the Heisenberg Uncertainty Relation.}
+    \label{fig-FTHUP}
+\end{figure}
+
+Let us now derive the HUP. To begin, we will prove a more general uncertainty principle between operators. To this end, we will require a Lemma concerning inner products of vectors:
+
+\begin{lembox}{: Cauchy-Shwartz inequality}
+    Let $\ket{\alpha}, \ket{\beta}$ be two vectors. Then,
+    \begin{equation}
+        \braket{\alpha}{\alpha}\braket{\beta}{\beta} \geq \abs{\braket{\alpha}{\beta}}^2.
+    \end{equation}
+\end{lembox}
+\begin{proof}
+    Since $\braket{v}{v} \geq 0$ for any vector $\ket{v}$, it follows that:
+    \begin{equation}
+        (\bra{\alpha} + \lambda^*\bra{\beta})(\ket{\alpha} + \lambda\ket{\beta}) \geq 0
+    \end{equation}
+    for all $\lambda \in \CC$. Now, set $\lambda = -\frac{\braket{\beta}{\alpha}}{\braket{\beta}{\beta}}$. Multiplying out the resulting expression, we obtain:
+    \begin{equation}
+        \braket{\alpha}{\alpha}\braket{\beta}{\beta} - \abs{\braket{\alpha}{\beta}}^2 \geq 0
+    \end{equation}
+    which proves the claim.
+\end{proof}
+
+With this Lemma under our belt, we have the tools in place to prove the following:
+
+\begin{thmbox}{: General uncertainty relation}
+    Let $A, B$ be two observables, and define $\Delta A \coloneqq A - \avg{A}_\psi I$, $\Delta B \coloneqq B - \avg{B}_\psi I$, (where the expectation value is taken with respect some state $\ket{\psi}$). It then follows that:
+    \begin{equation}
+        \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \frac{1}{4}\abs{\avg{[A, B]}_\psi}^2.
+    \end{equation}
+\end{thmbox}
+\begin{proof}
+    Let $\ket{\alpha} = (\Delta A)\ket{\psi}$ and $\ket{\beta} = (\Delta B)\ket{\psi}$. Applying Cauchy-Shwartz, we obtain:
+    \begin{equation}\label{eq-CSapplied}
+        \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \abs{\avg{\Delta A\Delta B}_\psi}^2.
+    \end{equation}
+    Now, notice that we can decompose:
+    \begin{equation}
+        \Delta A \Delta B = \frac{1}{2}[\Delta A, \Delta B] + \frac{1}{2}\{\Delta A, \Delta B \}
+    \end{equation}
+    Where $\{\Delta A, \Delta B\} = \Delta A\Delta B + \Delta B\Delta A$ denotes the \emph{anti-commutator} of $\Delta A$ and $\Delta B$. Now, we claim that $\bra{\psi}[\Delta A, \Delta B]\ket{\psi}$ is imaginary. To see this, note:
+    \begin{equation}
+        [\Delta A, \Delta B]^\dag = (\Delta A \Delta B - \Delta B \Delta A)^\dag = \Delta B \Delta A - \Delta A \Delta B = -[\Delta A, \Delta B]
+    \end{equation}
+    where we have used that $\Delta A, \Delta B$ are Hermitian, and that $(AB)^\dag = B^\dag A^\dag$ (this can be proven easily from the definition of the adjoint using the dual correspondence - it is a good exercise to check it)! From the above equation, we obtain:
+    \begin{equation}
+        (\bra{\psi}[\Delta A, \Delta B]\ket{\psi})^* = -\bra{\psi}[\Delta A, \Delta B]\ket{\psi}
+    \end{equation}
+    from which we would conclude that $\bra{\psi}[\Delta A, \Delta B]\ket{\psi}$ must be purely imaginary. 
+
+    We can also verify that $\bra{\psi}\{\Delta A, \Delta B\}\ket{\psi}$ is real (check)! The upshot is then that we can write:
+    \begin{equation}
+        \avg{\Delta A\Delta B}_\psi = \frac{1}{2}\avg{[\Delta A, \Delta B]}_\psi + \frac{1}{2}\avg{\{\Delta A, \Delta B\}}_\psi
+    \end{equation}
+    with the first term purely imaginary, and the second term purely real. Then, using that for a complex number $z = a + bi$ that the modulus square is $\abs{z}^2 = \abs{a}^2 + \abs{b}^2$, we find:
+    \begin{equation}
+        \abs{\avg{\Delta A\Delta B}_\psi}^2 = \frac{1}{4}\abs{\avg{[\Delta A, \Delta B]}_\psi}^2 + \frac{1}{4}\abs{\avg{\{\Delta A, \Delta B\}}_\psi}^2 \geq \frac{1}{4}\abs{\avg{[\Delta A, \Delta B]}_\psi}^2
+    \end{equation}
+    where the last inequality follows from both terms being positive. Combining this result with \eqref{eq-CSapplied}, we find:
+    \begin{equation}
+        \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \frac{1}{4}\abs{\avg{[\Delta A, \Delta B]}_\psi}^2
+    \end{equation}
+    which is exactly what we wished to show.
+\end{proof}
+
+\begin{corbox}{: Heisenberg uncertainty principle}
+    The position operator $X$ and momentum operator $P$ (in the same direction) satisfy:
+    \begin{equation}
+        \avg{(\Delta X)^2}_\psi\avg{(\Delta P)^2}_\psi \geq \frac{\hbar^2}{4}
+    \end{equation}
+\end{corbox}
+\begin{proof}
+    This follows immediately by setting $A = X, B = P$ in the general uncertainty relation, and applying the canonical commutation relation $[X, P] = i\hbar \mathbb{I}$. 
+\end{proof}
+
+Having now proven the Heisenberg uncertainty relation, it may be of interest to ask which wavefunctions saturate it; that is, for which $\ket{\psi}$ does it follow that:
+\begin{equation}
+    \avg{(\Delta X)^2}_\psi\avg{(\Delta P)^2}_\psi = \frac{\hbar^2}{4}?
+\end{equation} 
+
+\begin{propbox}{: Gaussian wavepackets saturate the HUP}
+    Gaussian Wavepackets, that is, states with position wavefunctions:
+    \begin{equation}
+        \braket{x}{\psi} = (2\pi d^2)^{-1/4}e^{-\frac{x^2}{4d^2}}
+    \end{equation}
+    saturate the Heisenberg uncertainty principle.
+\end{propbox}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Images/fig-Gaussian.pdf}
+    \caption{Plot of a Gaussian wavefunction (with mean zero).}
+    \label{fig-Gaussian}
+\end{figure}
+\begin{proof}
+    First, note that:
+    \begin{equation}
+        \avg{(\Delta A)^2} = \avg{(A - \avg{A}\mathbb{I})^2} = \avg{A^2 - 2\avg{A}A + \avg{A}^2\mathbb{I}} = \avg{A^2} - 2\avg{A}^2 + \avg{A}^2 = \avg{A^2} - \avg{A}^2
+    \end{equation}
+    So we calculate $\avg{A}_\psi$ and $\avg{A^2}_\psi$ for $A = X, P$. First, note that $\avg{X}_\psi = 0$ as the wavefunction is symmetric about $x = 0$ ($\psi(x) = \psi(-x)$). Therefore:
+    \begin{equation}
+        \avg{(\Delta X)^2}_\psi = \avg{X^2}_\psi = \int_{-\infty}^\infty dx x^2(2\pi d^2)^{-1/4}e^{-\frac{x^2}{4d^2}} = d^2
+    \end{equation}
+    Since $\dod{\psi(x)}{x}$ is anti-symmetric, $\avg{P}_\psi = 0$ and hence:
+    \begin{equation}
+        \avg{(\Delta P)^2}_\psi = \avg{P^2}_\psi = \int_{-\infty}^\infty dx\left((2\pi d^2)^{-1/4}e^{-\frac{x^2}{4d^2}}\right)\left(-i\hbar\dod{}{x}\right)^2\left((2\pi d^2)^{-1/4}e^{-\frac{x^2}{4d^2}}\right) = \frac{\hbar^2}{4d^2}
+    \end{equation}
+    where we have used the representation of the momentum operator in the position basis. We therefore conclude for Gaussian wavepackets that:
+    \begin{equation}
+        \avg{(\Delta X)^2}_\psi \avg{(\Delta P)^2}_\psi = \frac{\hbar^2}{4}
+    \end{equation}
+    and hence the claim is proven.
+\end{proof}
+
+Note that the above argument generalizes easily to the case where $\avg{X}_\psi \neq 0$ for the Gaussian wavepacket (i.e. a Gaussian shifted from the origin).
+Actually, the relationship between Gaussian wavepackets and HUP saturation is even stronger.
+
+\begin{propbox}{: HUP Saturation $\iff$ Gaussian Wavpackets}
+    Gaussian wavepackets are the only wavefunctions which saturate the Heisenberg uncertainty principle.
+\end{propbox}
+\begin{proof}
+    We have already shown Gaussian wavepackets $\implies$ HUP saturation in the previous proof. So, what is left to do is show that if the HUP is saturated, then the state must be a Gaussian wavepacket.
+
+    First, we go back to our derivation of the general uncertainty principle, where we invoked the Cauchy-Shwartz inequality. It can be shown that the CS-inequality is saturated with equality if and only if $\ket{\alpha} = c\ket{\beta}$ for some $c \in \CC$ (i.e. the two vectors in question are linearly independent). Therefore, in the context of position and momentum, we require:
+    \begin{equation}\label{eq-XPlineardep}
+        (\Delta X)\ket{\psi} = c(\Delta P)\ket{\psi}
+    \end{equation}
+    for some complex $c$. Further, in our derivation we threw away the anti-commutator term; for minimum uncertainty we require that this term be zero, i.e. $\abs{\avg{\set{\Delta X, \Delta P}}}^2 = 0$. But we established in the uncertainty relation argument that this was real, so if it is zero, it follows that $c$ appearing in Eq. \eqref{eq-XPlineardep} is purely imaginary. Thereofre if we consider the ODE defined by Eq. \eqref{eq-XPlineardep} in the position basis, we obtain:
+    \begin{equation}
+        x\psi(x) = ci\hbar\dpd{}{x}\psi(x)
+    \end{equation}
+    where we have assumed $\avg{X}_\psi = \avg{P}_\psi = 0$ for simplicity (however this assumption can be relaxed - $\avg{X}$ will only shift the Gaussian some amount from the origin, and $\avg{P}$ will only tack on a physically irrelevant phase factor - check this if you like!). It can then be easily checked that (for imaginary $c$) that the solutions to the above ODE are Gaussians, which completes the proof of the claim.
+\end{proof}
+

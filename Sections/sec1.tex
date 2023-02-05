@@ -46,7 +46,7 @@ Our second founder of interest is DeBroglie. In 1924, he postulated that matter 
 The so-called ``wave-particle'' duality would be confirmed in 1927 by the Davisson-Germer experiment, which saw peaks of electron intensity at distinct angles, showing that electrons scatter in the same nature as photons.
 
 Our third founder of interest is Schr\"{o}dinger, who postulated the Schr\"{o}dinger equation (expressed below in the position basis) in 1926:
-\begin{equation}
+\begin{equation}\label{eq-SEintro}
     i\hbar \dpd{}{t}\psi(\v{r}, t) = \left[\frac{-\hbar^2}{2m}\nabla^2 + V(\v{r}, t)\right] \psi(\v{r}, t).
 \end{equation}
 It should be noted that this is one of the two core formulas of non-relativistic quantum mechanics, and is the quantum-mechanical equivalent of Newton's laws. It however does not cover the effects of special relativity (for which we defer the reader to a future course on quantum field theory) or quantum measurement (which we shall address now). 
@@ -952,7 +952,7 @@ Multiplying both sides by $i\hbar\bra{x}$ and cancelling out the $\Delta x$s:
     \bra{x}P\ket{\alpha} = \int dx' \braket{x}{x'}\left(-i\hbar \dpd{}{x'}\braket{x'}{\alpha}\right) = \int dx' \delta(x - x')\left(-i\hbar \dpd{}{x'}\braket{x'}{\alpha}\right)
 \end{equation}
 the delta function picks out $x' = x$ in the integral and so we obtain:
-\begin{equation}
+\begin{equation}\label{eq-momentumXbasis}
     \bra{x}P\ket{\alpha} = -i\hbar\dpd{}{x}\braket{x}{\alpha}
 \end{equation}
 as claimed.
@@ -1159,7 +1159,7 @@ Having now proven the Heisenberg uncertainty relation, it may be of interest to 
 Note that the above argument generalizes easily to the case where $\avg{X}_\psi \neq 0$ for the Gaussian wavepacket (i.e. a Gaussian shifted from the origin).
 Actually, the relationship between Gaussian wavepackets and HUP saturation is even stronger.
 
-\begin{propbox}{: HUP Saturation $\iff$ Gaussian Wavpackets}
+\begin{propbox}{: HUP Saturation $\iff$ Gaussian Wavpackets}\label{prop-GaussianHUPsaturation}
     Gaussian wavepackets are the only wavefunctions which saturate the Heisenberg uncertainty principle.
 \end{propbox}
 \begin{proof}

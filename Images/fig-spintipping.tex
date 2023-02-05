@@ -1,0 +1,38 @@
+\documentclass[10pt]{standalone}
+\usepackage[sc]{mathpazo}
+\usepackage{commands}
+
+\begin{document}
+\begin{tikzpicture}
+    \node[] at (0, 0) {
+        \begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=1]
+            \clip(-2.19,-2.49) rectangle (2.66,2.58);
+            \draw(0,0) circle (2cm);
+            \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+            \draw [->, green] (0,0) -- (0,2);
+            \draw [->] (0,0) -- (-0.81,-0.79);
+            \draw [->] (0,0) -- (2,0);
+            \draw [fill] (0,0) circle (1.5pt);
+            \node[] at (0, 2.2) {$\zhat$};
+            \node[] at (2.2, 0) {$\yhat$};
+            \node[] at (-0.9, -0.9) {$\xhat$};
+        \end{tikzpicture}
+    };
+    \draw[blue, thick, -latex] (2.5, 0) -- (5.5, 0);
+    \node[above, blue] at (4, 0) {Apply RF Pulse};
+    \node at (8, 0) {
+        \begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=1]
+            \clip(-2.19,-2.49) rectangle (2.66,2.58);
+            \draw(0,0) circle (2cm);
+            \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+            \draw [->] (0,0) -- (0,2);
+            \draw [->, green] (0,0) -- (-0.81,-0.79);
+            \draw [->] (0,0) -- (2,0);
+            \draw [fill] (0,0) circle (1.5pt);
+            \node[] at (0, 2.2) {$\zhat$};
+            \node[] at (2.2, 0) {$\yhat$};
+            \node[] at (-0.9, -0.9) {$\xhat$};
+        \end{tikzpicture}
+    };
+\end{tikzpicture}
+\end{document}

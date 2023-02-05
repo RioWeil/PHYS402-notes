@@ -1,0 +1,30 @@
+\documentclass[10pt]{standalone}
+\usepackage[sc]{mathpazo}
+\usepackage{commands}
+
+\begin{document}
+\begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=1]
+    \clip(-2.19,-2.49) rectangle (2.66,2.58);
+    \draw(0,0) circle (2cm);
+    \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+    \draw [->] (0,0) -- (0,2);
+    \draw [->] (0,0) -- (-0.81,-0.79);
+    \draw [->] (0,0) -- (2,0);
+    \draw[blue, ->] (0, 0) -- (-0.6, -0.85);
+    \draw[blue, ->] (0, 0) -- (-0.4, -0.87);
+    \draw[blue, ->] (0, 0) -- (-0.2, -0.89);
+    \draw[blue, ->] (0, 0) -- (0, -0.9);
+    \draw[blue, ->] (0, 0) -- (0.2, -0.9);
+    \draw[blue, ->] (0, 0) -- (0.4, -0.88);
+    \draw[blue, ->] (0, 0) -- (0.6, -0.85);
+    \draw[blue, ->] (0, 0) -- (0.8, -0.82);
+    \draw[blue, ->] (0, 0) -- (1.0, -0.78);
+    \draw[blue, ->] (0, 0) -- (1.2, -0.7);
+    \draw[blue, -latex] (-0.4, -1) -- (0.4, -1);
+    \node[blue, below] at (0, -1) {$t$};
+    \draw [fill] (0,0) circle (1.5pt);
+    \node[] at (0, 2.2) {$\zhat$};
+    \node[] at (2.2, 0) {$\yhat$};
+    \node[] at (-0.9, -0.9) {$\xhat$};
+\end{tikzpicture}
+\end{document}

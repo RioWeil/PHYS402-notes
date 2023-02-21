@@ -117,7 +117,7 @@ Defining $\omega = \frac{\abs{e}B}{m_e c}$, and recalling that the electron char
 \end{equation}
 The choice of notation $\omega$, traditionally used to represent some frequency, will become clear shortly.
 
-We now look at how an electron spin, originally prepared in the spin state $\ket{\psi(0)} = \ket{+} = \frac{\ket{\uparrow} + \ket{\downarrow}}{\sqrt{2}}$, evolves under the influence of this Hamiltonian; that is, we wish to solve the time-dependent SE:
+We now look at how an electron spin, originally prepared in the spin state $\ket{\psi(0)} = \ket{\rightarrow} = \frac{\ket{\uparrow} + \ket{\downarrow}}{\sqrt{2}}$, evolves under the influence of this Hamiltonian; that is, we wish to solve the time-dependent SE:
 \begin{equation}\label{eq-spinprecessSE}
     i\hbar\dpd{}{t}\ket{\psi(t)} = \omega S_z\ket{\psi(t)}
 \end{equation}
@@ -173,7 +173,7 @@ Now, let's return back to our current example of the spin-1/2 particle in a magn
         \\ &= \frac{\hbar}{2}\cos(\omega t)
     \end{split}
 \end{equation}
-where we have used that $S_x\ket{\uparrow/\downarrow} = \frac{\hbar}{2}\ket{\downarrow/\uparrow}$, the orthonormality of the up/down spin states and an Euler identity of $\frac{e^{i\omega t} + e^{-i\omega t}}{2} = \cos(\omega t)$. We see that the expectation value of $S_x$ precesses in time! Note that the expectation value of $S_y$ similarly precesses, with an analogous calculation showing that $\avg{S_y}_{\psi(t)} = \frac{\hbar}{2}\sin(\omega t)$. $S_z$ commutes with the Hamiltonian and hence its expectation value is constant in time; and since $\bra{\psi(0)}S_z\ket{\psi(0)} = \bra{+}S_z\ket{+} = \frac{\hbar}{2}\braket{+}{-} = 0$, $\avg{S_z}_{\psi(t)} = 0$ for all time.
+where we have used that $S_x\ket{\uparrow/\downarrow} = \frac{\hbar}{2}\ket{\downarrow/\uparrow}$, the orthonormality of the up/down spin states and an Euler identity of $\frac{e^{i\omega t} + e^{-i\omega t}}{2} = \cos(\omega t)$. We see that the expectation value of $S_x$ precesses in time! Note that the expectation value of $S_y$ similarly precesses, with an analogous calculation showing that $\avg{S_y}_{\psi(t)} = \frac{\hbar}{2}\sin(\omega t)$. $S_z$ commutes with the Hamiltonian and hence its expectation value is constant in time; and since $\bra{\psi(0)}S_z\ket{\psi(0)} = \bra{\rightarrow}S_z\ket{\rightarrow} = \frac{\hbar}{2}\braket{\rightarrow}{\leftarrow} = 0$, $\avg{S_z}_{\psi(t)} = 0$ for all time.
 
 We can visualize this precession of the spin using the \emph{Bloch sphere} representation of a spin-1/2 (qubit) system. The state $\ket{\psi(t)}$ that we solved for in Eq. \eqref{eq-spinprecesssoln} can be visualized as a vector rotating along the surface of the unit sphere in the $xy$-plane:
 

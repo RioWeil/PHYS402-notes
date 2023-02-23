@@ -428,13 +428,13 @@ Up until now, we have considered both kets $\ket{\psi}$ and operators $A$ as abs
 
 Consider an ONB $\mathcal{B} = \set{\ket{b_i}}_i$, and consider an expression of the form $\ket{\phi} = A\ket{\psi}$. Inserting the resolution of the identity once on the left hand side and twice on the right hand side, we have:
 \begin{equation}
-    \left(\sum_i \dyad{b_i}{b_i}\right)\ket{\phi} = \left(\sum_i \dyad{b_i}{b_i}\right)A\left(\sum_j \dyad{b_i}{b_i}\right)\ket{\psi}
+    \left(\sum_i \dyad{b_i}{b_i}\right)\ket{\phi} = \left(\sum_i \dyad{b_i}{b_i}\right)A\left(\sum_j \dyad{b_j}{b_j}\right)\ket{\psi}
 \end{equation}
 Now redrawing some brakets we obtain:
 \begin{equation}
     \sum_i \ket{b_i}(\braket{b_i}{\phi}) = \sum_{i}\sum_j \ket{b_i}(\bra{b_i}A\ket{b_j})(\braket{b_j}{\psi}).
 \end{equation}
-Now, we can consider $\braket{b_i}{\phi} = [\phi]_i$ and $\braket{b_j}{\psi} = [\psi]_i$ (where we use $[\cdot]$ to denote `representation of') as elements of column vectors $[\phi]$ and $[\psi]$, and $\bra{b_i}A\ket{b_j} = [A]_{ij}$ as elements of a matrix $[A]$. In other words, expanded out in the $\set{\ket{b_i}}_i$ basis, we can realize $[\phi]$ is the column vector obtained by multiplying the column vector $[\psi]$ by the matrix $[A]$.
+Now, we can consider $\braket{b_i}{\phi} = [\phi]_i$ and $\braket{b_j}{\psi} = [\psi]_j$ (where we use $[\cdot]$ to denote `representation of') as elements of column vectors $[\phi]$ and $[\psi]$, and $\bra{b_i}A\ket{b_j} = [A]_{ij}$ as elements of a matrix $[A]$. In other words, expanded out in the $\set{\ket{b_i}}_i$ basis, we can realize $[\phi]$ is the column vector obtained by multiplying the column vector $[\psi]$ by the matrix $[A]$.
 
 Similarly, we can write for any bra $\bra{\tau}$ that:
 \begin{equation}
@@ -688,7 +688,7 @@ while the projector corresponding to the eigenvalue $0$ subspace is given by:
 \end{equation}
 So, if we wanted to find the probability of measuring $S_z^2 = \hbar^2$ given a pre-measurement state $\ket{\psi}$, the probability would be given by:
 \begin{equation}
-    p(\hbar^2) = \bra{\psi}\Pi_1\ket{\psi} = \abs{\braket{+}{\psi}}^2 + \abs{\braket{-}{\psi}}^2
+    p(\hbar^2) = \bra{\psi}\Pi_{\hbar^2}\ket{\psi} = \abs{\braket{+}{\psi}}^2 + \abs{\braket{-}{\psi}}^2
 \end{equation}
 and the post measurement state would be given by:
 \begin{equation}
@@ -731,7 +731,7 @@ We have seen in the previous sections how quantum measurement is an active proce
     \label{fig-SGsequential}
 \end{figure}
 
-Let us carry out the calculation to deduce what we would find at the output ports of the above experiment. In the first $S_z$ measurement, there is a 50/50 probability of measuring the spin to be spin-up, and so 50\% of the original particles go through. Then recalling that $\ket{\rightarrow/\leftarrow} = \frac{\ket{\uparrow} \pm \ket{\downarrow}}{\sqrt{2}}$, we have that $\ket{\uparrow} = \frac{\ket{\rightarrow} + \ket{\leftarrow}}{\sqrt{2}}$ and so we find in the second measurement that $p(\rightarrow) = \abs{\braket{\rightarrow}{\uparrow}}^2 = \frac{1}{2}$ And $p(\leftarrow) = \abs{\braket{\leftarrow}{\uparrow}}^2 = \frac{1}{2}$ (we may use the non-degenerate formulation of the Born rule here) so half of the particles go through - one quarter of the original particles from the oven. Now, we note something interesting; when we do the probability calculation for the third measurement, we find $p(\uparrow) = \abs{\braket{\uparrow}{\rightarrow}}^2 = \frac{1}{2}$ and $p(\downarrow) = \abs{\braket{\downarrow}{\rightarrow}}^2 = \frac{1}{2}$, so we find that one eighth of the original particles from the oven are present at each of the two output ports. Classically, this is quite strange - a classical measurement does not disturb the system, so when we measure the $z$-component of spin for the second time, we should expect to get 100\% spin-up (as we post-selected on spin-up in the first measurement)! But this is indeed not what happens quantum mechanically - in QM, measurements physically change the state of the system, so there are physical observables that are incompatible with each other (that is, there value cannot be simulataneously precisely known). Let us formalize this notion with a definition:
+Let us carry out the calculation to deduce what we would find at the output ports of the above experiment. In the first $S_z$ measurement, there is a 50/50 probability of measuring the spin to be spin-up, and so 50\% of the original particles go through. Then recalling that $\ket{\rightarrow/\leftarrow} = \frac{\ket{\uparrow} \pm \ket{\downarrow}}{\sqrt{2}}$, we have that $\ket{\uparrow} = \frac{\ket{\rightarrow} + \ket{\leftarrow}}{\sqrt{2}}$ and so we find in the second measurement that $p(\rightarrow) = \abs{\braket{\rightarrow}{\uparrow}}^2 = \frac{1}{2}$ And $p(\leftarrow) = \abs{\braket{\leftarrow}{\uparrow}}^2 = \frac{1}{2}$ (we may use the non-degenerate formulation of the Born rule here) so half of the particles go through - one quarter of the original particles from the oven. Now, we note something interesting; when we do the probability calculation for the third measurement, we find $p(\uparrow) = \abs{\braket{\uparrow}{\rightarrow}}^2 = \frac{1}{2}$ and $p(\downarrow) = \abs{\braket{\downarrow}{\rightarrow}}^2 = \frac{1}{2}$, so we find that one eighth of the original particles from the oven are present at each of the two output ports. Classically, this is quite strange - a classical measurement does not disturb the system, so when we measure the $z$-component of spin for the second time, we should expect to get 100\% spin-up (as we post-selected on spin-up in the first measurement)! But this is indeed not what happens quantum mechanically - in QM, measurements physically change the state of the system, so there are physical observables that are incompatible with each other (that is, their value cannot be simulataneously precisely known). Let us formalize this notion with a definition:
 
 \begin{defbox}{: Compatible observables}
     Two observables $A, B$ are \emph{compatible} if:
@@ -1068,7 +1068,7 @@ Let us now derive the HUP. To begin, we will prove a more general uncertainty pr
 With this Lemma under our belt, we have the tools in place to prove the following:
 
 \begin{thmbox}{: General uncertainty relation}
-    Let $A, B$ be two observables, and define $\Delta A \coloneqq A - \avg{A}_\psi I$, $\Delta B \coloneqq B - \avg{B}_\psi I$, (where the expectation value is taken with respect some state $\ket{\psi}$). It then follows that:
+    Let $A, B$ be two observables, and define $\Delta A \coloneqq A - \avg{A}_\psi I$, $\Delta B \coloneqq B - \avg{B}_\psi I$, (where the expectation value is taken with respect to some state $\ket{\psi}$). It then follows that:
     \begin{equation}
         \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \frac{1}{4}\abs{\avg{[A, B]}_\psi}^2.
     \end{equation}
@@ -1076,7 +1076,7 @@ With this Lemma under our belt, we have the tools in place to prove the followin
 \begin{proof}
     Let $\ket{\alpha} = (\Delta A)\ket{\psi}$ and $\ket{\beta} = (\Delta B)\ket{\psi}$. Applying Cauchy-Shwartz, we obtain:
     \begin{equation}\label{eq-CSapplied}
-        \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \abs{\avg{\Delta A\Delta B}_\psi}^2.
+        \braket{\alpha}{\alpha}\braket{\beta}{\beta} \geq \abs{\braket{\alpha}{\beta}}^2 \implies \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \abs{\avg{\Delta A\Delta B}_\psi}^2.
     \end{equation}
     Now, notice that we can decompose:
     \begin{equation}
@@ -1143,7 +1143,7 @@ Having now proven the Heisenberg uncertainty relation, it may be of interest to 
     \end{equation}
     So we calculate $\avg{A}_\psi$ and $\avg{A^2}_\psi$ for $A = X, P$. First, note that $\avg{X}_\psi = 0$ as the wavefunction is symmetric about $x = 0$ ($\psi(x) = \psi(-x)$). Therefore:
     \begin{equation}
-        \avg{(\Delta X)^2}_\psi = \avg{X^2}_\psi = \int_{-\infty}^\infty dx x^2(2\pi d^2)^{-1/4}e^{-\frac{x^2}{4d^2}} = d^2
+        \avg{(\Delta X)^2}_\psi = \avg{X^2}_\psi = \int_{-\infty}^\infty dx x^2\left((2\pi d^2)^{-1/4}e^{-\frac{x^2}{4d^2}}\right)^2 = d^2
     \end{equation}
     Since $\dod{\psi(x)}{x}$ is anti-symmetric, $\avg{P}_\psi = 0$ and hence:
     \begin{equation}
@@ -1169,7 +1169,7 @@ Actually, the relationship between Gaussian wavepackets and HUP saturation is ev
     \begin{equation}\label{eq-XPlineardep}
         (\Delta X)\ket{\psi} = c(\Delta P)\ket{\psi}
     \end{equation}
-    for some complex $c$. Further, in our derivation we threw away the anti-commutator term; for minimum uncertainty we require that this term be zero, i.e. $\abs{\avg{\set{\Delta X, \Delta P}}}^2 = 0$. But we established in the uncertainty relation argument that this was real, so if it is zero, it follows that $c$ appearing in Eq. \eqref{eq-XPlineardep} is purely imaginary. Thereofre if we consider the ODE defined by Eq. \eqref{eq-XPlineardep} in the position basis, we obtain:
+    for some complex $c$. Further, in our derivation we threw away the anti-commutator term; for minimum uncertainty we require that this term be zero, i.e. $\abs{\avg{\set{\Delta X, \Delta P}}}^2 = 0$. But we established in the uncertainty relation argument that this was real, so if it is zero, it follows that $c$ appearing in Eq. \eqref{eq-XPlineardep} is purely imaginary. Theerofre if we consider the ODE defined by Eq. \eqref{eq-XPlineardep} in the position basis, we obtain:
     \begin{equation}
         x\psi(x) = ci\hbar\dpd{}{x}\psi(x)
     \end{equation}

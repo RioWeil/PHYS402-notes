@@ -1,1 +1,182 @@
 \section[Quantum Information and Foundations]{\hyperlink{toc}{Quantum Information and Foundations}}
+
+\subsection{Composite Systems and Entanglement}
+We so far have discussed the quantum mechanics of a single particle, where the states of the particle live in a Hilbert space $\mathcal{H}$. How then do we discuss the quantum mechanics of multiple particles? We introduce the tensor product, which is the operation that allows us to compose systems in quantum mechanics\footnote{It is worth noting that even to describe the quantum mechanics of a single particle, we require this composition operation - the Hilbert spaces corresponding to the position and spin degrees of freedom of a single particle compose via the tensor product to yield a complete description of the particle.}. 
+
+\begin{defbox}{: Tensor Product of States/Operators}
+    Given states $\ket{\alpha}_A \in \H_A$ and $\ket{\beta}_B \in \H_B$, we can compose them using the tensor product: 
+    \begin{equation}
+        \ket{\alpha}_A \otimes \ket{\beta}_B
+    \end{equation}
+    The tensor product has the distributive property:
+    \begin{equation}
+        \ket{\alpha}_A \otimes (\ket{\beta_1}_B + \ket{\beta_2}_B) = \ket{\alpha}_A \otimes \ket{\beta_1}_B + \ket{\alpha}_A \otimes \ket{\beta_2}_B
+    \end{equation}
+    It also has the property that the inner product of two tensor product states is just the product of the inner products on each of the subspaces:
+    \begin{equation}
+        \left(\bra{\alpha}_A \otimes \bra{\beta}_B \right) \left(\ket{\gamma}_A \otimes \ket{\delta}_B\right) = \braket{\alpha}{\gamma} \braket{\beta}{\delta}
+    \end{equation}
+    Furthermore, the action of a composite linear operator $O_A \otimes P_B$ (where $O_A$ acts on states in $\H_A$ and $P_B$ acts on states in $\H_B$) on a composite state $\ket{\alpha}_A \otimes \ket{\beta}_B$ is to act on each of the states in the respective subspaces, and then take the tensor product:
+    \begin{equation}
+        (O_A \otimes P_B)(\ket{\alpha}_B \otimes \ket{\beta}_B) = (O_A\ket{\alpha}_A) \otimes (P_B\ket{\beta}_B)
+    \end{equation}
+\end{defbox}
+Note that the tensor product is not commutative; $\ket{\alpha}_A \otimes \ket{\beta}_B \neq \ket{\beta}_B \otimes \ket{\alpha}_A$ in general.
+
+It may help to consider what the tensor product does on the level of vector/matrix representations of states/operators. Suppose that we have the following representations of $\ket{\alpha}_A, \ket{\beta}_B, O_A, P_B$:
+\begin{equation}
+    \ket{\alpha}_A \cong [\alpha_A] = \m{\alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_m}, \quad \ket{\beta}_B \cong [\beta_B] = \m{\beta_1 \\ \beta_2 \\ \vdots \\ \beta_k}
+\end{equation}
+\begin{equation}
+    O_A \cong [O_A] = \m{O_{11} & O_{12} & \cdots & O_{1m} \\ O_{21} & O_{22} & & \\ \vdots & & \ddots & \\ O_{m1} & & & O_{mm}}, \quad P_B \cong [P_B] = \m{P_{11} & P_{12} & \cdots & P_{1k} \\ P_{21} & P_{22} & & \\ \vdots & & \ddots & \\ P_{k1} & & & P_{kk}}
+\end{equation}
+Then the representations of $\ket{\alpha}_A \otimes \ket{\beta}_B$, $O_A \otimes P_B$ take the form:
+\begin{equation}
+    \ket{\alpha}_A \otimes \ket{\beta}_B \cong \m{\alpha_1[\beta] \\ \alpha_2[\beta] \\ \vdots \\ \alpha_{m}[\beta]}
+\end{equation}
+\begin{equation}
+    O_A \otimes P_B \cong \m{O_{11}[P_B] & O_{12}[P_B] & \cdots & O_{1m}[P_B] \\ O_{21}[P_B] & O_{22}[P_B] & & \\ \vdots & & \ddots & \\ O_{m1}[P_B] & & & O_{mm}[P_B]}
+\end{equation}
+
+From this we get the intuition for the fact that if $\ket{\alpha}_A$ is an $m$-dimensional state ket and $\ket{\beta}_B$ is an $k$-dimensional state ket, then $\ket{\alpha}_A \otimes \ket{\beta}_B$ is $mk$-dimensional. 
+
+Of course, the composite states $\ket{\alpha}_A \otimes \ket{\beta}_B$ are themselves quantum states, so they must live in some Hilbert space ; this larger/composite Hilbert space (which the above analysis suggests should have dimension given by $\dim(\H_A) \cdot \dim(\H_B)$) is constructed as follows:
+
+\begin{defbox}{: Tensor Product Hilbert Space}
+    Let $\set{\ket{i}_A}_{i=1}^m, \set{\ket{j}_B}_{j=1}^k$ be ONBs for Hilbert spaces $\H_A, \H_B$ (with $\dim(\H_A) = m$ and $\dim(\H_B) = k$). The composite Hilbert space $\H_{AB} = \H_A \otimes \H_B$ is then defined as the span of the basis states:
+    \begin{equation}
+        \ket{ij} = \ket{i}_A \otimes \ket{j}_B
+    \end{equation}
+    That is to say; the states Hilbert space $\H_{AB}$ consists of all (normalized) complex linear combinations $\ket{\psi}_{AB}$:
+    \begin{equation}
+        \ket{\psi}_{AB} = \sum_{ij}c_{ij}\ket{ij}, \quad c_{ij} \in \CC.
+    \end{equation}
+    Note that although we have used a particular basis to define it, $\H_{AB}$ is a basis-independent construction (check!) 
+\end{defbox}
+
+Although we have here focused on the case of composing two systems, the above definitions generalize to the case when we compose $n$ quantum mechanical systems together - for example we may have $n$ particles whose states live in Hilbert spaces $\H_i$ and the $n$-particle Hilbert space is given by:
+\begin{equation}
+    \H_{\text{composite}} = \H_1 \otimes \H_2 \otimes \ldots \otimes \H_n
+\end{equation}
+which is defined as the span of the vectors:
+\begin{equation}\label{eq-productstatebasis}
+    \ket{j^{(1)}}_1 \otimes \ket{j^{(2)}}_2 \otimes \ldots \otimes \ket{j^{(n)}}_n
+\end{equation}
+where each $\ket{j^{(i)}}_i$ belongs to $\set{\ket{j^{(i)}}_i}_{j=1}^{\dim(\H_i)}$, an ONB of $\H_i$.
+
+Note that the tensor product is associative; that is:
+\begin{equation}
+    \H_A \otimes \H_B \otimes \H_C = \H_A \otimes (\H_B \otimes \H_C) = (\H_A \otimes \H_B) \otimes \H_C.
+\end{equation}
+An analogous associative property holds for the tensor product of states and operators - so, the $n$-fold tensor product can just be viewed as just iterating the tensor product for the case of 2 systems $n$ times.
+
+Further note - the number of basis vectors of the composite Hilbert space (and hence its dimension) is given by $\dim(\H_{\text{composite}}) = \prod_{i=1}^n \dim(\H_i)$ - this is exponential in the number of systems being composed. For example for $n$ spin-1/2 particles (with $\dim(\H_i) = 2$), the dimension of the composite Hilbert space is $\dim(\H^n) = \prod_{i=1}^n 2 = 2^n$. For $n = 300$ we have $\dim(\H^n) \sim 10^{90}$ which already exceeds the number of atoms in the observable universe ($10^{78} - 10^{82}$). This high dimensionality is a reason\footnote{There are some subtleties here; specifically, we require an extremely large number of parameters to describe highly entangled states (entanglement to be defined extremely shortly). Product (i.e. unentangled) states, i.e. states of the form in Eq. \eqref{eq-productstatebasis} are efficiently simulable because we may describe the subsystems individually, and therefore the whole state efficiently. The argument is actually a layer more nuanced than this, because certain types of entangled states (stabilizer states - see the \href{https://en.wikipedia.org/wiki/Gottesman–Knill_theorem}{Gottesman-Knill Theorem}) are efficiently simulable. But this is far beyond the scope of this course.} for why quantum systems are hard to simulate classically.
+
+Let us give a concrete example of $n = 2$ spin-1/2 particles. An ONB for the Hilbert spaces $\H_A, \H_B$ is $\set{\ket{\uparrow}, \ket{\downarrow}}$, so the basis states of the composite Hilbert space $\H_A \otimes \H_B$ are:
+\begin{equation}
+    \begin{split}
+        \ket{\uparrow\uparrow}_{AB} &\coloneqq \ket{\uparrow}_A \otimes \ket{\uparrow}_B
+        \\ \ket{\uparrow\downarrow}_{AB} &\coloneqq \ket{\uparrow}_A \otimes \ket{\downarrow}_B
+        \\ \ket{\downarrow\uparrow}_{AB} &\coloneqq \ket{\downarrow}_A \otimes \ket{\uparrow}_B
+        \\ \ket{\downarrow\downarrow}_{AB} &\coloneqq \ket{\downarrow}_A \otimes \ket{\downarrow}_B
+    \end{split}
+\end{equation}
+And so:
+\begin{equation}
+    \H_{AB} = \text{span}(\set{\ket{\uparrow\uparrow}_{AB}, \ket{\uparrow\downarrow}_{AB}, \ket{\downarrow\uparrow}_{AB}, \ket{\downarrow\downarrow}_{AB}}) = \set{\alpha\ket{\uparrow\uparrow}_{AB} + \beta\ket{\uparrow\downarrow}_{AB} + \gamma\ket{\downarrow\uparrow}_{AB} + \delta\ket{\downarrow\downarrow}_{AB} : \alpha, \beta, \gamma, \delta \in \CC}
+\end{equation}
+
+A question we now ask - are all states in a composite Hilbert space able to be written as a tensor product of states of the individual subsystems (as the notation $\H_{AB} = \H_A \otimes \H_B$ might suggest)? The answer is a \emph{no} - this leads to our definition of entanglement, which will play a key role in the entire discussion of this chapter:
+
+\begin{defbox}{: Entanglemement}
+    A pure quantum state $\ket{\Psi}$ in a composite Hilbert space $\H = \bigotimes_{i=1}^n \H_i$ is \emph{entangled} if it cannot be written as the tensor product of states from the subsystems $\H_1, \ldots \H_n$, i.e.:
+    \begin{equation}
+        \ket{\Psi} \neq \ket{\psi_1}_1 \otimes \ket{\psi_2}_2 \otimes \ldots \otimes \ket{\psi_n}_n
+    \end{equation}
+    for \emph{any} choice of states $\ket{\psi_i}_i \in \H_i$. 
+\end{defbox}
+
+For the case of $n = 2$ subsystems, we have bipartite entanglement defined as:
+
+\begin{defbox}{: Bipartite entanglement}
+    Let $\H_A, \H_B$ be Hilbert spaces and define the composite Hilbert space $\H_{AB} = \H_A \otimes \H_B$. A pure state $\ket{\Psi}_{AB} \in \H_{AB}$ is \emph{entangled} if:
+    \begin{equation}
+        \ket{\Psi}_{AB} \neq \ket{\psi}_A \otimes \ket{\phi}_B
+    \end{equation}
+    for any choice of local states $\ket{\psi}_A \in \H_A, \ket{\phi}_B \in \H_B$. 
+\end{defbox}
+
+A specific example of bipartite entanglement is given by the Bell state $\ket{B_{11}}$ (also called the singlet state - this name for it will perhaps become clearer after we begin our study of addition of angular momenta):
+\begin{equation}
+    \ket{B_{11}} = \frac{\ket{\uparrow}_A \otimes \ket{\downarrow}_B - \ket{\downarrow}_A \otimes \ket{\uparrow}_B}{\sqrt{2}}
+\end{equation}
+It is a useful exercise to use the definition of entanglement given above to prove that the above Bell state is indeed entangled (hint: try a proof by contradiction).
+
+Let's explore some properties of this state - let us begin by looking at what happens when we measure one of the two spins. In general, if we perform an operation on one subsystem (represented by the application of an operator $A$) of a composite system while doing nothing to the other parts, we can represent this by the composite operator consisting of applying $A$ to the specific subsystem, tensored with the identity operation $\II$ on the other subsystems. In our case, we consider operators of the form $\Pi_A \otimes \II_B$ where $\Pi_A$ is a projector acting on the first spin.
+
+Let's suppose we measure the first spin in the $\set{\ket{\uparrow}_A, \ket{\downarrow}_A}$ basis. From the Born rule we find:
+\begin{equation}
+    \begin{split}
+        p(\uparrow) = \bra{B_{11}}\Pi_{\uparrow, A} \otimes \mathbb{I}_B\ket{B_{11}} &= \frac{\bra{\uparrow}\Pi_{\uparrow}\ket{\uparrow}\bra{\downarrow}\mathbb{I}\ket{\downarrow} - \bra{\downarrow}\Pi_{\uparrow}\ket{\downarrow}\bra{\uparrow}\mathbb{I}\ket{\uparrow}}{2} = \frac{1 \cdot 1 - 0 \cdot 1}{2} = \frac{1}{2}
+    \end{split}
+\end{equation}
+and analogously $p(\downarrow) = \frac{1}{2}$. The Dirac postulate tells us that if we measure spin-up, then the post-measurement state is:
+\begin{equation}
+    \ket{B_{11}} \to \frac{\Pi_{\uparrow, A} \otimes \mathbb{I}_B\ket{B_{11}}}{\sqrt{\bra{B_{11}}\Pi_{\uparrow, A} \otimes \mathbb{I}_B\ket{B_{11}}}} = \frac{1}{\sqrt{\frac{1}{2}}} \frac{\Pi_{\uparrow, A}\ket{\uparrow}_A \otimes \II_B\ket{\downarrow}_B - \Pi_{\uparrow, A}\ket{\downarrow}_A \otimes \II_B\ket{\uparrow}_B}{\sqrt{2}} = \ket{\uparrow}_A \otimes \ket{\downarrow}_B
+\end{equation}
+Analogously, it can be shown that if we measure the first spin to be spin-down, then the post-measurement state is:
+\begin{equation}
+    \ket{B_{11}} \to \ket{\downarrow}_A \otimes \ket{\uparrow}_B
+\end{equation}
+We note two things - it seems as though when we measure the first spin in the $S_z$ eigenbasis that we have a 50/50 probability of measuring the first spin to be up or down, and that the second spin after the measurement points in the direction opposite that of which the first spin was measured to be.
+
+Perhaps this interesting result is just a consequence of our choice of measurement basis $\set{\ket{\uparrow}, \ket{\downarrow}}$. Let us try then measuring in the $S_x$ eigenbasis of $\set{\ket{\rightarrow} = \frac{\ket{\uparrow} + \ket{\downarrow}}{\sqrt{2}}, \ket{\leftarrow} = \frac{\ket{\uparrow} - \ket{\downarrow}}{\sqrt{2}}}$. Using that $\ket{\uparrow/\downarrow} = \frac{\ket{\rightarrow} \pm \ket{\leftarrow}}{\sqrt{2}}$, we can rewrite the $\ket{B_{11}}$ state in terms of the $S_x$ eigenstates as:
+\begin{equation}
+    \begin{split}
+        \ket{B_{11}} &= \frac{\frac{\ket{\rightarrow}_A + \ket{\leftarrow}_A}{\sqrt{2}} \otimes \frac{\ket{\rightarrow}_B - \ket{\leftarrow}_B}{\sqrt{2}} - \frac{\ket{\rightarrow}_A - \ket{\leftarrow}_A}{\sqrt{2}} \otimes \frac{\ket{\rightarrow}_B + \ket{\leftarrow}_B}{\sqrt{2}}}{\sqrt{2}}
+        \\ &= \frac{\ket{\leftarrow}_A \otimes \ket{\rightarrow}_B - \ket{\rightarrow}_A \otimes \ket{\leftarrow}_B}{\sqrt{2}}
+    \end{split}
+\end{equation}
+Up to a (physically irrelevant) global minus sign, the form of $\ket{B_{11}}$ expressed in terms of $S_x$ eigenstates is identical to $\ket{B_{11}}$ expressed in terms of $S_z$ eigenstates. So, if we were to measure the first spin in the $S_x$ eigenbasis, just as before, we would find that we would have 50/50 probability of measuring spin right or spin left, and the post-measurement state would have the unmeasured spin pointing in the opposite direction as the measured one.
+
+In fact we could go through with the above calculation for an arbitrary measurement basis, and find the same result.
+
+\begin{propbox}{: $\ket{B_{11}}$ is non-local and anti-correlated in every direction}
+    Consider the Bell state $\ket{B_{11}}$:
+    \begin{equation}
+        \ket{B_{11}} = \frac{\ket{\uparrow}_A \otimes \ket{\downarrow}_B - \ket{\downarrow}_A \otimes \ket{\uparrow}_B}{\sqrt{2}}
+    \end{equation}
+    and consider an arbitrary ONB (for a spin-1/2 particle):
+    \begin{equation}
+        \mathcal{B}(\alpha, \beta) = \set{\ket{\v{r}_{\alpha, \beta}} \coloneqq \alpha\ket{\uparrow} + \beta\ket{\downarrow}, \ket{\bar{\v{r}}_{\alpha. \beta} \coloneqq \beta^*\ket{\uparrow} - \alpha^*\ket{\downarrow}}}
+    \end{equation}
+    where $\alpha, \beta \in \CC$ and $\abs{\alpha}^2 + \abs{\beta}^2$. Then:
+    \begin{enumerate}
+        \item $\ket{B_{11}}$ has no local properties; that is, whatever parameters $\alpha, \beta \in \CC$ the measurement of particle $A$ in the basis $\mathcal{B}(\alpha, \beta)$ leads to a 50/50 distribution of outcome.
+        \item The measurement of particle A leads to the post-measurement states:
+        \begin{equation}
+            \begin{split}
+                \text{outcome ``+'': } \ket{B_{11}} &\to \ket{\v{r}_{\alpha, \beta}}_A \otimes \ket{\bar{\v{r}}_{\alpha, \beta}}_B
+                \\ \text{outcome  ``-'': } \ket{B_{11}} &\to \ket{\bar{\v{r}}_{\alpha, \beta}}_A \otimes \ket{\v{r}_{\alpha, \beta}}_B
+            \end{split}
+        \end{equation}
+        That is, after measuremnet, the spin states of particles A/B are perfectly anti-correlated, irrespective of the measurement outcome and measuremnet basis.
+    \end{enumerate} 
+\end{propbox}
+The above demonstrates how quantum entanglement can give rise to ``stronger-than-classical'' correlations. In classical mechanics, it is possible for measurements to be correlated in certain measurement bases, but not all.
+
+\begin{proof}
+    Left as a homework exercise.
+\end{proof}
+
+\subsection{The No-Cloning Theorem}
+
+\subsection{Superdense Coding and Quantum Teleportation}
+
+\subsection{Density Operators}
+
+\subsection{Quantum Cryptography}
+
+\subsection{Bell Inequalities and the Kochen-Specker Theorem - Coming Later}
+
+\subsection{Quantum Computation - Coming Later}

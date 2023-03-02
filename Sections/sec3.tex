@@ -323,11 +323,11 @@ Recalling that $\sigma_z = \dyad{0}{0} - \dyad{1}{1}$ and $\sigma_x = \dyad{0}{1
 \end{equation}
 Which we may summarize with the relation:
 \begin{equation}
-    \ket{B_{ab}} = (\sigma_{z, 1})^a(\sigma_{x, 1})^b\ket{B_{00}}.
+    \ket{B_{ab}} = (\sigma_{z, 1})^b(\sigma_{x, 1})^a\ket{B_{00}}.
 \end{equation}
 Note that we could very well have applied the Paulis to the second qubit, i.e.:
 \begin{equation}
-    \ket{B_{ab}} = (\sigma_{z, 2})^a(\sigma_{x, 2})^b\ket{B_{00}}.
+    \ket{B_{ab}} = (\sigma_{z, 2})^b(\sigma_{x, 2})^a\ket{B_{00}}.
 \end{equation}
 Although we will not need it for the superdense coding protocol (we will need it for the following teleportation protocol), it will be useful to note one more property of $\ket{B_{00}}$, namely that it is the $+1$ eigenvalue of $\sigma_z \otimes \sigma_z$ and $\sigma_x \otimes \sigma_x$ (check!):
 \begin{equation}\label{eq-Bellstabilizers}
@@ -348,7 +348,7 @@ With this, we now have all the tools available to understand the superdense codi
     \textbf{Protocol:}
     \begin{enumerate}
         \item In advance of the actual communication, the parties share a bell state $\ket{B_{00}}$ between themselves.
-        \item Sender $A$ applies $(\sigma_z)^a(\sigma_x)^b$ to their qubit, encoding $(a, b) \in \ZZ_2 \times \ZZ_2$. 
+        \item Sender $A$ applies $(\sigma_z)^b(\sigma_x)^a$ to their qubit, encoding $(a, b) \in \ZZ_2 \times \ZZ_2$. 
         \item $A$ sends their qubit to $B$.
         \item $B$ measures their qubit in the Bell basis\footnote{Formally, they can measure some observable $O = \lambda_{00}\dyad{B_{00}}{B_{00}} + \lambda_{01}\dyad{B_{01}}{B_{01}} + \lambda_{10}\dyad{B_{10}}{B_{10}} + \lambda_{11}\dyad{B_{11}}{B_{11}}$, and since the state they have is one of the four Bell states, depending on which outcome $\lambda_{ab}$ they measure they can recover the two bits $a, b$.}. Depending on the outcome, they recover $a ,b$.
     \end{enumerate}
@@ -393,7 +393,7 @@ Let us also discuss the counterpart to the superdense coding protocol - namely, 
         \item $A$ prepares the state $\ket{\psi}$ she wants to transmit (she now has two qubits; one from the shared Bell pair, and one for $\ket{\psi}$).
         \item $A$ performs a measurement in the Bell basis on their two qubits, and obtains the two-bit outcome $(a, b)$. 
         \item $A$ transmits the two-bit measurement outcome $(a, b)$ to $B$.
-        \item $B$ applies the correction operator $\sigma_{ab} = (\sigma_x)^b(\sigma_z)^a$ to their qubit. The resulting state of $B$'s qubit is $\ket{\psi}$.
+        \item $B$ applies the correction operator $\sigma_{ab} = (\sigma_x)^a(\sigma_z)^b$ to their qubit. The resulting state of $B$'s qubit is $\ket{\psi}$.
     \end{enumerate}
 \end{blankbox}
 
@@ -404,44 +404,44 @@ Let us also discuss the counterpart to the superdense coding protocol - namely, 
 \end{equation}
 onto the state. Using Eq. \eqref{eq-BellstatePaulis}, we can write:
 \begin{equation}
-    \ket{B_{ab}}_{ij} = (\sigma_{z, i})^a(\sigma_{x, i})^b\ket{B_{00}}_{ij}
+    \ket{B_{ab}}_{ij} = (\sigma_{z, i})^b(\sigma_{x, i})^a\ket{B_{00}}_{ij}
 \end{equation}
 and so we can rewrite the projector as:
 \begin{equation}
-    \Pi_{ab, 12} \otimes \II_3 = \dyad{B_{ab}}{B_{00}}_{12}(\sigma_{x, 2})^b(\sigma_{z, 2})^a \otimes \II_3
+    \Pi_{ab, 12} \otimes \II_3 = \dyad{B_{ab}}{B_{00}}_{12}(\sigma_{x, 2})^a(\sigma_{z, 2})^b \otimes \II_3
 \end{equation}
 So applying this to the initial state, we find:
 \begin{equation}\label{eq-qteleportpart1}
     \begin{split}
-        \Pi_{ab, 12} \otimes I_3\left(\ket{\psi}_1 \otimes \ket{B_{00}}_{23}\right) &= \left( \dyad{B_{ab}}{B_{00}}_{12}(\sigma_{x, 2})^b(\sigma_{z, 2})^a \otimes \II_3\right)\left((\alpha\ket{0}_1 + \beta\ket{1}_1) \otimes \ket{B_{00}}_{23}\right)
-        \\ &=  \left( \dyad{B_{ab}}{B_{00}}_{12} \otimes \II_3\right) \left((\alpha\ket{0}_1 + \beta\ket{1}_1) \otimes ((\sigma_{x, 2})^b(\sigma_{z, 2})^a \otimes \II_3) \ket{B_{00}}_{23}\right)
+        \Pi_{ab, 12} \otimes I_3\left(\ket{\psi}_1 \otimes \ket{B_{00}}_{23}\right) &= \left( \dyad{B_{ab}}{B_{00}}_{12}(\sigma_{x, 2})^a(\sigma_{z, 2})^b \otimes \II_3\right)\left((\alpha\ket{0}_1 + \beta\ket{1}_1) \otimes \ket{B_{00}}_{23}\right)
+        \\ &=  \left( \dyad{B_{ab}}{B_{00}}_{12} \otimes \II_3\right) \left((\alpha\ket{0}_1 + \beta\ket{1}_1) \otimes ((\sigma_{x, 2})^a(\sigma_{z, 2})^b \otimes \II_3) \ket{B_{00}}_{23}\right)
     \end{split}
 \end{equation}
 Now using that $\ket{B_{00}}$ is stabilized by $\sigma_z \otimes \sigma_z$ and $\sigma_x \otimes \sigma_x$ (Equation \eqref{eq-Bellstabilizers}) we can write:
 \begin{equation}
-    \ket{B_{00}}_{23} = (\sigma_{x, 2} \otimes \sigma_{x, 3})^b\ket{B_{00}}_{23} = (\sigma_{z, 2} \otimes \sigma_{z, 3})^a(\sigma_{x, 2} \otimes \sigma_{x, 3})^b\ket{B_{00}}_{23}
+    \ket{B_{00}}_{23} = (\sigma_{z, 2} \otimes \sigma_{z, 3})^b\ket{B_{00}}_{23} = (\sigma_{z, 2} \otimes \sigma_{z, 3})^b(\sigma_{x, 2} \otimes \sigma_{x, 3})^a\ket{B_{00}}_{23}
 \end{equation} 
 And now using that $\sigma_i^2 = \II$ for each of the Pauli matrices:
 \begin{equation}
     \begin{split}
-        ((\sigma_{x, 2})^b(\sigma_{z, 2})^a \otimes \II_3)\ket{B_{00}}_{23} &= ((\sigma_{x, 2})^b(\sigma_{z, 2})^a \otimes \II_3)(\sigma_{z, 2} \otimes \sigma_{z, 3})^a(\sigma_{x, 2} \otimes \sigma_{x, 3})^b\ket{B_{00}}_{23}
-        \\ &= ((\sigma_{x, 2})^b\otimes \II_3)((\sigma_{z, 2})^2 \otimes \sigma_{z, 3})^a(\sigma_{x, 2} \otimes \sigma_{x, 3})^b\ket{B_{00}}_{23}
-        \\ &= ((\sigma_{x, 2})^b\otimes \II_3)(\II_2 \otimes \sigma_{z, 3})^a(\sigma_{x, 2} \otimes \sigma_{x, 3})^b\ket{B_{00}}_{23}
-        \\ &= (\II_2 \otimes \sigma_{z, 3})^a((\sigma_{x, 2})^2\otimes \sigma_{x, 3})^b\ket{B_{00}}_{23}
-        \\ &= (\II_2 \otimes \sigma_{z, 3})^a(\II_2 \otimes \sigma_{x, 3})^b\ket{B_{00}}_{23}
-        \\ &= \II_2 \otimes (\sigma_{z, 3})^a(\sigma_{x, 3})^b \ket{B_{00}}_{23}
+        ((\sigma_{x, 2})^a(\sigma_{z, 2})^b \otimes \II_3)\ket{B_{00}}_{23} &= ((\sigma_{x, 2})^a(\sigma_{z, 2})^b \otimes \II_3)(\sigma_{z, 2} \otimes \sigma_{z, 3})^b(\sigma_{x, 2} \otimes \sigma_{x, 3})^a\ket{B_{00}}_{23}
+        \\ &= ((\sigma_{x, 2})^a\otimes \II_3)((\sigma_{z, 2})^2 \otimes \sigma_{z, 3})^b(\sigma_{x, 2} \otimes \sigma_{x, 3})^a\ket{B_{00}}_{23}
+        \\ &= ((\sigma_{x, 2})^a\otimes \II_3)(\II_2 \otimes \sigma_{z, 3})^b(\sigma_{x, 2} \otimes \sigma_{x, 3})^a\ket{B_{00}}_{23}
+        \\ &= (\II_2 \otimes \sigma_{z, 3})^b((\sigma_{x, 2})^2\otimes \sigma_{x, 3})^a\ket{B_{00}}_{23}
+        \\ &= (\II_2 \otimes \sigma_{z, 3})^b(\II_2 \otimes \sigma_{x, 3})^a\ket{B_{00}}_{23}
+        \\ &= \II_2 \otimes (\sigma_{z, 3})^b(\sigma_{x, 3})^a \ket{B_{00}}_{23}
     \end{split}
 \end{equation}
 So then Eq. \eqref{eq-qteleportpart1} becomes:
 \begin{equation}
     \begin{split}
-        \Pi_{ab, 12} \otimes I_3\left(\ket{\psi}_1 \otimes \ket{B_{00}}_{23}\right) &= (\sigma_{z, 3})^a(\sigma_{x, 3})^b\left( \dyad{B_{ab}}{B_{00}}_{12} \otimes \II_3\right) \left(\ket{\psi}_1 \otimes \ket{B_{00}}_{23}\right)
-        \\ &= (\sigma_{z, 3})^a(\sigma_{x, 3})^b\left( \frac{\dyad{B_{ab}}{00}_{12} + \dyad{B_{ab}}{11}_{12}}{\sqrt{2}} \otimes \II_3\right) \left(\frac{\alpha\ket{000}_{123} + \beta\ket{100}_{123} + \alpha\ket{011}_{123} + \beta\ket{111}_{123}}{\sqrt{2}}\right)
-        \\ &= (\sigma_{z, 3})^a(\sigma_{x, 3})^b\frac{1}{2}\left(\ket{B_{ab}}_{12}\right) \otimes (\alpha\ket{0}_3 + \beta\ket{1}_3)
-        \\ &= \frac{1}{2}\ket{B_{ab}}_{12} \otimes \left((\sigma_{z, 3})^a(\sigma_{x, 3})^b\ket{\psi}_3\right)
+        \Pi_{ab, 12} \otimes I_3\left(\ket{\psi}_1 \otimes \ket{B_{00}}_{23}\right) &= (\sigma_{z, 3})^b(\sigma_{x, 3})^a\left( \dyad{B_{ab}}{B_{00}}_{12} \otimes \II_3\right) \left(\ket{\psi}_1 \otimes \ket{B_{00}}_{23}\right)
+        \\ &= (\sigma_{z, 3})^b(\sigma_{x, 3})^a\left( \frac{\dyad{B_{ab}}{00}_{12} + \dyad{B_{ab}}{11}_{12}}{\sqrt{2}} \otimes \II_3\right) \left(\frac{\alpha\ket{000}_{123} + \beta\ket{100}_{123} + \alpha\ket{011}_{123} + \beta\ket{111}_{123}}{\sqrt{2}}\right)
+        \\ &= (\sigma_{z, 3})^b(\sigma_{x, 3})^a\frac{1}{2}\left(\ket{B_{ab}}_{12}\right) \otimes (\alpha\ket{0}_3 + \beta\ket{1}_3)
+        \\ &= \frac{1}{2}\ket{B_{ab}}_{12} \otimes \left((\sigma_{z, 3})^b(\sigma_{x, 3})^a\ket{\psi}_3\right)
     \end{split}
 \end{equation}
-So indeed we have teleported $\ket{\psi}$ to the third ($B$'s) qubit, up to applying a correction operator of $\sigma_{ab} = (\sigma_{x, 3})^b(\sigma_{z, 3})^a$. 
+So indeed we have teleported $\ket{\psi}$ to the third ($B$'s) qubit, up to applying a correction operator of $\sigma_{ab} = (\sigma_{x, 3})^a(\sigma_{z, 3})^b$. 
 
 \qed
 

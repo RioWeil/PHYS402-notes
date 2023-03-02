@@ -1,0 +1,51 @@
+\documentclass[10pt]{standalone}
+\usepackage[sc]{mathpazo}
+\usepackage{commands}
+
+\begin{document}
+    \begin{tikzpicture}
+        \node[] at (0, 0) {
+        \begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=1]
+            \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (56.7:0.4) arc (56.7:90.:0.4) -- cycle;
+            \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (-135.7:0.4) arc (-135.7:-33.2:0.4) -- cycle;
+            \draw(0,0) circle (2cm);
+            \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+            \draw [->, blue] (0,0)-- (0.70,1.07);
+            \draw [->] (0,0) -- (0,2);
+            \draw [->] (0,0) -- (-0.81,-0.79);
+            \draw [->] (0,0) -- (2,0);
+            \draw [dotted] (0.7,1)-- (0.7,-0.46);
+            \draw [dotted] (0,0)-- (0.7,-0.46);
+            \draw (-0.08,-0.3) node[anchor=north west] {$\phi$};
+            \draw (0.01,0.9) node[anchor=north west] {$\theta$};
+            \draw (0.4,1.65) node[anchor=north west, blue] {$\ket{\psi}$};
+            \draw [fill] (0,0) circle (1.5pt);
+            \node[above] at (0, 2) {$\ket{0}$};
+            \node[below] at (0, -2) {$\ket{1}$};
+            \node[] at (2.2, 0) {$\yhat$};
+            \node[] at (-0.9, -0.9) {$\xhat$};
+        \end{tikzpicture}
+        };
+        \draw[-latex, thick] (2.5, 0) -- (4.5, 1.25);
+        \draw[-latex, thick] (2.5, 0) -- (4.5, -1.25);
+        \node[] at (6, 1.5) {
+            \begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=0.5]
+                \draw(0,0) circle (2cm);
+                \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+                \draw [->, blue] (0,0) -- (0,2);
+                \draw [fill] (0,0) circle (1.5pt);
+                \node[above, blue] at (0, 2) {$\ket{0}$};
+            \end{tikzpicture}
+        };
+        \node[] at (6, -1.5) {
+            \begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=0.5]
+                \draw(0,0) circle (2cm);
+                \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+                \draw [->, blue] (0,0) -- (0,-2);
+                \draw [fill] (0,0) circle (1.5pt);
+                \node[below, blue] at (0, -2) {$\ket{1}$};
+            \end{tikzpicture}
+        };
+        
+    \end{tikzpicture}
+\end{document}

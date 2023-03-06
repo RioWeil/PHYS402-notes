@@ -848,7 +848,7 @@ The protocol works as if is no eavesdropping, the measurement outcomes for which
 
 Let us explore one strategy that an eavesdropper $E$ might take to eavesdrop on the key, and show why the strategy fails. In step 1 of the protocol, suppose $E$ intercepts the Bell states shared between $A$ and $B$ and entangles herself with them:
 \begin{equation}
-    \ket{B_{00}}_{AB} = \frac{\ket{0}_A \otimes \ket{0}_B + \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}} \mapsto \frac{\ket{0}_A \otimes \ket{0}_B + \ket{1}_E + \ket{1}_A \otimes \ket{1}_B \otimes \ket{1}_E}{\sqrt{2}} \eqqcolon \ket{GHZ}_{ABE}
+    \ket{B_{00}}_{AB} = \frac{\ket{0}_A \otimes \ket{0}_B + \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}} \mapsto \frac{\ket{0}_A \otimes \ket{0}_B \otimes \ket{0}_E + \ket{1}_A \otimes \ket{1}_B \otimes \ket{1}_E}{\sqrt{2}} \eqqcolon \ket{GHZ}_{ABE}
 \end{equation}
 where the rightmost state is what is known as the Greenberger-Horne-Zeilinger state. Now, if $A$ and $B$ measure in the $Z$ basis ($\set{\ket{0}, \ket{1}}$), we have:
 \begin{equation}

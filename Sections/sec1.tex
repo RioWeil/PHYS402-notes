@@ -1068,7 +1068,7 @@ Let us now derive the HUP. To begin, we will prove a more general uncertainty pr
 With this Lemma under our belt, we have the tools in place to prove the following:
 
 \begin{thmbox}{: General uncertainty relation}
-    Let $A, B$ be two observables, and define $\Delta A \coloneqq A - \avg{A}_\psi I$, $\Delta B \coloneqq B - \avg{B}_\psi I$, (where the expectation value is taken with respect to some state $\ket{\psi}$). It then follows that:
+    Let $A, B$ be two observables, and define $\Delta A \coloneqq A - \avg{A}_\psi \II$, $\Delta B \coloneqq B - \avg{B}_\psi \II$, (where the expectation value is taken with respect to some state $\ket{\psi}$). It then follows that:
     \begin{equation}
         \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \frac{1}{4}\abs{\avg{[A, B]}_\psi}^2.
     \end{equation}
@@ -1103,6 +1103,14 @@ With this Lemma under our belt, we have the tools in place to prove the followin
     where the last inequality follows from both terms being positive. Combining this result with \eqref{eq-CSapplied}, we find:
     \begin{equation}
         \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \frac{1}{4}\abs{\avg{[\Delta A, \Delta B]}_\psi}^2
+    \end{equation}
+    Finally, note that since the identity commutes with all operators that:
+    \begin{equation}
+        [\Delta A, \Delta B] = [A - \avg{A}_\psi \II, B - \avg{B}_\psi \II] = [A, B]
+    \end{equation}
+    and so:
+    \begin{equation}
+        \avg{(\Delta A)^2}_\psi\avg{(\Delta B)^2}_\psi \geq \frac{1}{4}\abs{\avg{[A, B]}_\psi}^2
     \end{equation}
     which is exactly what we wished to show.
 \end{proof}

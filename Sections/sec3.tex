@@ -771,7 +771,7 @@ Before moving into quantum protocols, we look at some classical counterparts.
         where $\oplus$ denotes component-wise addition modulo 2 (i.e. $0 + 0 = 1 + 1 = 0, 0 + 1 = 1 + 0 = 1$ for each component of the bitstring), and broadcasts $\v{c}$ to the world.
         \item $B$ receives the encoded message $\v{c}$, and computes:
         \begin{equation}
-            \v{c} \oplus \v{realm} = \v{x} \oplus \v{r} \oplus \v{r} = \v{x}.
+            \v{c} \oplus \v{r} = \v{x} \oplus \v{r} \oplus \v{r} = \v{x}.
         \end{equation}
         The message $\v{x}$ is thus successfully transmitted.
     \end{enumerate}

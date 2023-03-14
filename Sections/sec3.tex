@@ -117,7 +117,10 @@ Let's explore some properties of this state - let us begin by looking at what ha
 Let's suppose we measure the first spin in the $\set{\ket{\uparrow}_A, \ket{\downarrow}_A}$ basis. From the Born rule we find:
 \begin{equation}
     \begin{split}
-        p(\uparrow) = \bra{B_{11}}\Pi_{\uparrow, A} \otimes \mathbb{I}_B\ket{B_{11}} &= \frac{\bra{\uparrow}\Pi_{\uparrow}\ket{\uparrow}\bra{\downarrow}\mathbb{I}\ket{\downarrow} - \bra{\downarrow}\Pi_{\uparrow}\ket{\downarrow}\bra{\uparrow}\mathbb{I}\ket{\uparrow}}{2} = \frac{1 \cdot 1 - 0 \cdot 1}{2} = \frac{1}{2}
+        p(\uparrow) &= \bra{B_{11}}\Pi_{\uparrow, A} \otimes \mathbb{I}_B\ket{B_{11}} 
+        \\ &= \frac{\bra{\uparrow}\Pi_{\uparrow}\ket{\uparrow}\bra{\downarrow}\mathbb{I}\ket{\downarrow} + \bra{\downarrow}\Pi_{\uparrow}\ket{\downarrow}\bra{\uparrow}\mathbb{I}\ket{\uparrow} - \bra{\uparrow}\Pi_\uparrow \ket{\downarrow}\bra{\downarrow}\II\ket{\uparrow} - \bra{\downarrow}\Pi_\uparrow \ket{\uparrow}\bra{\uparrow}\II\ket{\downarrow}}{2} 
+        \\ &= \frac{1 \cdot 1 + 0 \cdot 1  - 0 \cdot 0 - 0 \cdot 0}{2} 
+        \\ &= \frac{1}{2}
     \end{split}
 \end{equation}
 and analogously $p(\downarrow) = \frac{1}{2}$. The Dirac postulate tells us that if we measure spin-up, then the post-measurement state is:
